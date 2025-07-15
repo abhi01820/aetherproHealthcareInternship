@@ -21,9 +21,12 @@ function Provider({
   const [userDetail, setUserDetail] = useState<UsersDetail | null>(null);
 
 
-  useEffect(()=>{
-    user && CreateNewUser();
-  },[user])
+ useEffect(() => {
+  if (user) {
+    CreateNewUser();
+  }
+}, [user]);
+
 
   const CreateNewUser=async ()=>{
     const result=await axios.post('/api/users');
