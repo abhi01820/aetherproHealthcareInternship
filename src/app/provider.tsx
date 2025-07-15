@@ -18,7 +18,7 @@ function Provider({
 }>) {
 
   const {user}=useUser();
-  const [userDetail,setUserDetail]=useState<any>();
+  const [userDetail, setUserDetail] = useState<UsersDetail | null>(null);
 
 
   useEffect(()=>{
