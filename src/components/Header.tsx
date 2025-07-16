@@ -76,6 +76,7 @@ export default function Header() {
         </div>
       </div>
 
+<<<<<<< HEAD
 
       <div className="bg-lime-200 py-2 px-10 text-lg border-2 border-b-2 border-gray-800">
   <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0">
@@ -93,6 +94,12 @@ export default function Header() {
     </div>
   </div>
 </div>
+=======
+      {/* CLINICAL DATA SUITE title with cream background and dark border */}
+      <div className="text-center border-2 bg-amber-50 font-bold py-2 tracking-wider text-xl border-t-2 border-b-2 border-gray-800">
+        CLINICAL DATA SUITE
+      </div>
+>>>>>>> c737540e6887cda3c583b5f04d14ffc2a662b00c
     </div>
   );
 }
