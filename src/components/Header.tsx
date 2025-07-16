@@ -1,4 +1,6 @@
-// components/PatientHeader.tsx
+'use client';
+import React from 'react';
+
 export default function Header() {
   return (
     <div className="w-full font-sans">
@@ -11,7 +13,7 @@ export default function Header() {
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
           <span>RAJ</span>
         </div>
-        
+
         {/* Gender */}
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800">
           <span className="font-bold text-lg">Gender</span>
@@ -19,7 +21,7 @@ export default function Header() {
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
           <span>Male</span>
         </div>
-        
+
         {/* Age */}
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800">
           <span className="font-bold text-lg">Age</span>
@@ -27,7 +29,7 @@ export default function Header() {
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
           <span>34</span>
         </div>
-        
+
         {/* NATID */}
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800">
           <span className="font-bold text-lg">NAT ID</span>
@@ -35,7 +37,7 @@ export default function Header() {
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
           <span className="truncate">XOOCXOOOCXO00000C</span>
         </div>
-        
+
         {/* Nationality */}
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800">
           <span className="font-bold text-lg">Nationality</span>
@@ -43,7 +45,7 @@ export default function Header() {
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
           <span>INDIAN</span>
         </div>
-        
+
         {/* Insurance */}
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800">
           <span className="font-bold text-lg">Insurance</span>
@@ -58,48 +60,46 @@ export default function Header() {
         <div className="grid grid-cols-2 gap-2">
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">Patient Name</span>
           <span className="border-b-2 border-gray-800 pb-1">RAJ</span>
-          
+
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">Gender</span>
           <span className="border-b-2 border-gray-800 pb-1">Male</span>
-          
+
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">Age</span>
           <span className="border-b-2 border-gray-800 pb-1">34</span>
-          
+
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">NATID</span>
           <span className="border-b-2 border-gray-800 pb-1 truncate">XOOCXOOOCXO00000C</span>
-          
+
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">Nationality</span>
           <span className="border-b-2 border-gray-800 pb-1">INDIAN</span>
-          
+
           <span className="font-bold text-lg">Insurance</span>
           <span>ABC Insurance</span>
         </div>
       </div>
 
-<<<<<<< HEAD
-
+      {/* Doctor Details (below the header row) */}
       <div className="bg-lime-200 py-2 px-10 text-lg border-2 border-b-2 border-gray-800">
-  <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0">
-    <div>
-      <span className="text-red-700 font-bold">Doctor: </span>
-      <span className="text-black font-bold">Anand Kapoor</span>
-    </div>
-    <div>
-      <span className="text-red-700 font-bold">Speciality: </span>
-      <span className="text-black font-bold ">Cardiologist</span>
-    </div>
-    <div>
-      <span className="text-red-700 font-bold">Date: </span>
-      <span className="text-black font-bold ">Today : hh:mm</span>
-    </div>
-  </div>
-</div>
-=======
-      {/* CLINICAL DATA SUITE title with cream background and dark border */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0">
+          <div>
+            <span className="text-red-700 font-bold">Doctor: </span>
+            <span className="text-black font-bold">Anand Kapoor</span>
+          </div>
+          <div>
+            <span className="text-red-700 font-bold">Speciality: </span>
+            <span className="text-black font-bold ">Cardiologist</span>
+          </div>
+          <div>
+            <span className="text-red-700 font-bold">Date: </span>
+            <span className="text-black font-bold ">Today : hh:mm</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Clinical Title */}
       <div className="text-center border-2 bg-amber-50 font-bold py-2 tracking-wider text-xl border-t-2 border-b-2 border-gray-800">
         CLINICAL DATA SUITE
       </div>
->>>>>>> c737540e6887cda3c583b5f04d14ffc2a662b00c
     </div>
   );
 }
