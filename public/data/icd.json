@@ -1,0 +1,1502 @@
+[
+ {
+  "Code": "L89.000",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified elbow, unstageable"
+ },
+ {
+  "Code": "L89.001",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 1"
+ },
+ {
+  "Code": "L89.002",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 2"
+ },
+ {
+  "Code": "L89.003",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 3"
+ },
+ {
+  "Code": "L89.004",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 4"
+ },
+ {
+  "Code": "L89.009",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified elbow, unspecified stage"
+ },
+ {
+  "Code": "L89.010",
+  "ShortDesc": "Pressure ulcer of right elbow, unstageable",
+  "LongDesc": "Pressure ulcer of right elbow, unstageable"
+ },
+ {
+  "Code": "L89.011",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 1",
+  "LongDesc": "Pressure ulcer of right elbow, stage 1"
+ },
+ {
+  "Code": "L89.012",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 2",
+  "LongDesc": "Pressure ulcer of right elbow, stage 2"
+ },
+ {
+  "Code": "L89.013",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 3",
+  "LongDesc": "Pressure ulcer of right elbow, stage 3"
+ },
+ {
+  "Code": "L89.014",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 4",
+  "LongDesc": "Pressure ulcer of right elbow, stage 4"
+ },
+ {
+  "Code": "L89.019",
+  "ShortDesc": "Pressure ulcer of right elbow, unspecified stage",
+  "LongDesc": "Pressure ulcer of right elbow, unspecified stage"
+ },
+ {
+  "Code": "L89.020",
+  "ShortDesc": "Pressure ulcer of left elbow, unstageable",
+  "LongDesc": "Pressure ulcer of left elbow, unstageable"
+ },
+ {
+  "Code": "L89.021",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 1",
+  "LongDesc": "Pressure ulcer of left elbow, stage 1"
+ },
+ {
+  "Code": "L89.022",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 2",
+  "LongDesc": "Pressure ulcer of left elbow, stage 2"
+ },
+ {
+  "Code": "L89.023",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 3",
+  "LongDesc": "Pressure ulcer of left elbow, stage 3"
+ },
+ {
+  "Code": "L89.024",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 4",
+  "LongDesc": "Pressure ulcer of left elbow, stage 4"
+ },
+ {
+  "Code": "L89.029",
+  "ShortDesc": "Pressure ulcer of left elbow, unspecified stage",
+  "LongDesc": "Pressure ulcer of left elbow, unspecified stage"
+ },
+ {
+  "Code": "L89.100",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified part of back, unstageable"
+ },
+ {
+  "Code": "L89.101",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 1"
+ },
+ {
+  "Code": "L89.102",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 2"
+ },
+ {
+  "Code": "L89.103",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 3"
+ },
+ {
+  "Code": "L89.104",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 4"
+ },
+ {
+  "Code": "L89.109",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified part of back, unspecified stage"
+ },
+ {
+  "Code": "L89.110",
+  "ShortDesc": "Pressure ulcer of right upper back, unstageable",
+  "LongDesc": "Pressure ulcer of right upper back, unstageable"
+ },
+ {
+  "Code": "L89.111",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 1",
+  "LongDesc": "Pressure ulcer of right upper back, stage 1"
+ },
+ {
+  "Code": "L89.112",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 2",
+  "LongDesc": "Pressure ulcer of right upper back, stage 2"
+ },
+ {
+  "Code": "L89.113",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 3",
+  "LongDesc": "Pressure ulcer of right upper back, stage 3"
+ },
+ {
+  "Code": "L89.114",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 4",
+  "LongDesc": "Pressure ulcer of right upper back, stage 4"
+ },
+ {
+  "Code": "L89.119",
+  "ShortDesc": "Pressure ulcer of right upper back, unspecified stage",
+  "LongDesc": "Pressure ulcer of right upper back, unspecified stage"
+ },
+ {
+  "Code": "L89.120",
+  "ShortDesc": "Pressure ulcer of left upper back, unstageable",
+  "LongDesc": "Pressure ulcer of left upper back, unstageable"
+ },
+ {
+  "Code": "L89.121",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 1",
+  "LongDesc": "Pressure ulcer of left upper back, stage 1"
+ },
+ {
+  "Code": "L89.122",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 2",
+  "LongDesc": "Pressure ulcer of left upper back, stage 2"
+ },
+ {
+  "Code": "L89.123",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 3",
+  "LongDesc": "Pressure ulcer of left upper back, stage 3"
+ },
+ {
+  "Code": "L89.124",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 4",
+  "LongDesc": "Pressure ulcer of left upper back, stage 4"
+ },
+ {
+  "Code": "L89.129",
+  "ShortDesc": "Pressure ulcer of left upper back, unspecified stage",
+  "LongDesc": "Pressure ulcer of left upper back, unspecified stage"
+ },
+ {
+  "Code": "L89.130",
+  "ShortDesc": "Pressure ulcer of right lower back, unstageable",
+  "LongDesc": "Pressure ulcer of right lower back, unstageable"
+ },
+ {
+  "Code": "L89.131",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 1",
+  "LongDesc": "Pressure ulcer of right lower back, stage 1"
+ },
+ {
+  "Code": "L89.132",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 2",
+  "LongDesc": "Pressure ulcer of right lower back, stage 2"
+ },
+ {
+  "Code": "L89.133",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 3",
+  "LongDesc": "Pressure ulcer of right lower back, stage 3"
+ },
+ {
+  "Code": "L89.134",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 4",
+  "LongDesc": "Pressure ulcer of right lower back, stage 4"
+ },
+ {
+  "Code": "L89.139",
+  "ShortDesc": "Pressure ulcer of right lower back, unspecified stage",
+  "LongDesc": "Pressure ulcer of right lower back, unspecified stage"
+ },
+ {
+  "Code": "L89.140",
+  "ShortDesc": "Pressure ulcer of left lower back, unstageable",
+  "LongDesc": "Pressure ulcer of left lower back, unstageable"
+ },
+ {
+  "Code": "L89.141",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 1",
+  "LongDesc": "Pressure ulcer of left lower back, stage 1"
+ },
+ {
+  "Code": "L89.142",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 2",
+  "LongDesc": "Pressure ulcer of left lower back, stage 2"
+ },
+ {
+  "Code": "L89.143",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 3",
+  "LongDesc": "Pressure ulcer of left lower back, stage 3"
+ },
+ {
+  "Code": "L89.144",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 4",
+  "LongDesc": "Pressure ulcer of left lower back, stage 4"
+ },
+ {
+  "Code": "L89.149",
+  "ShortDesc": "Pressure ulcer of left lower back, unspecified stage",
+  "LongDesc": "Pressure ulcer of left lower back, unspecified stage"
+ },
+ {
+  "Code": "L89.150",
+  "ShortDesc": "Pressure ulcer of sacral region, unstageable",
+  "LongDesc": "Pressure ulcer of sacral region, unstageable"
+ },
+ {
+  "Code": "L89.151",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 1",
+  "LongDesc": "Pressure ulcer of sacral region, stage 1"
+ },
+ {
+  "Code": "L89.152",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 2",
+  "LongDesc": "Pressure ulcer of sacral region, stage 2"
+ },
+ {
+  "Code": "L89.153",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 3",
+  "LongDesc": "Pressure ulcer of sacral region, stage 3"
+ },
+ {
+  "Code": "L89.154",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 4",
+  "LongDesc": "Pressure ulcer of sacral region, stage 4"
+ },
+ {
+  "Code": "L89.159",
+  "ShortDesc": "Pressure ulcer of sacral region, unspecified stage",
+  "LongDesc": "Pressure ulcer of sacral region, unspecified stage"
+ },
+ {
+  "Code": "L89.200",
+  "ShortDesc": "Pressure ulcer of unspecified hip, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified hip, unstageable"
+ },
+ {
+  "Code": "L89.201",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 1"
+ },
+ {
+  "Code": "L89.202",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 2"
+ },
+ {
+  "Code": "L89.203",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 3"
+ },
+ {
+  "Code": "L89.204",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 4"
+ },
+ {
+  "Code": "L89.209",
+  "ShortDesc": "Pressure ulcer of unspecified hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified hip, unspecified stage"
+ },
+ {
+  "Code": "L89.210",
+  "ShortDesc": "Pressure ulcer of right hip, unstageable",
+  "LongDesc": "Pressure ulcer of right hip, unstageable"
+ },
+ {
+  "Code": "L89.211",
+  "ShortDesc": "Pressure ulcer of right hip, stage 1",
+  "LongDesc": "Pressure ulcer of right hip, stage 1"
+ },
+ {
+  "Code": "L89.212",
+  "ShortDesc": "Pressure ulcer of right hip, stage 2",
+  "LongDesc": "Pressure ulcer of right hip, stage 2"
+ },
+ {
+  "Code": "L89.213",
+  "ShortDesc": "Pressure ulcer of right hip, stage 3",
+  "LongDesc": "Pressure ulcer of right hip, stage 3"
+ },
+ {
+  "Code": "L89.214",
+  "ShortDesc": "Pressure ulcer of right hip, stage 4",
+  "LongDesc": "Pressure ulcer of right hip, stage 4"
+ },
+ {
+  "Code": "L89.219",
+  "ShortDesc": "Pressure ulcer of right hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of right hip, unspecified stage"
+ },
+ {
+  "Code": "L89.220",
+  "ShortDesc": "Pressure ulcer of left hip, unstageable",
+  "LongDesc": "Pressure ulcer of left hip, unstageable"
+ },
+ {
+  "Code": "L89.221",
+  "ShortDesc": "Pressure ulcer of left hip, stage 1",
+  "LongDesc": "Pressure ulcer of left hip, stage 1"
+ },
+ {
+  "Code": "L89.222",
+  "ShortDesc": "Pressure ulcer of left hip, stage 2",
+  "LongDesc": "Pressure ulcer of left hip, stage 2"
+ },
+ {
+  "Code": "L89.223",
+  "ShortDesc": "Pressure ulcer of left hip, stage 3",
+  "LongDesc": "Pressure ulcer of left hip, stage 3"
+ },
+ {
+  "Code": "L89.224",
+  "ShortDesc": "Pressure ulcer of left hip, stage 4",
+  "LongDesc": "Pressure ulcer of left hip, stage 4"
+ },
+ {
+  "Code": "L89.229",
+  "ShortDesc": "Pressure ulcer of left hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of left hip, unspecified stage"
+ },
+ {
+  "Code": "L89.300",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified buttock, unstageable"
+ },
+ {
+  "Code": "L89.301",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 1"
+ },
+ {
+  "Code": "L89.302",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 2"
+ },
+ {
+  "Code": "L89.303",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 3"
+ },
+ {
+  "Code": "L89.304",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 4"
+ },
+ {
+  "Code": "L89.309",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified buttock, unspecified stage"
+ },
+ {
+  "Code": "L89.310",
+  "ShortDesc": "Pressure ulcer of right buttock, unstageable",
+  "LongDesc": "Pressure ulcer of right buttock, unstageable"
+ },
+ {
+  "Code": "L89.311",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 1",
+  "LongDesc": "Pressure ulcer of right buttock, stage 1"
+ },
+ {
+  "Code": "L89.312",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 2",
+  "LongDesc": "Pressure ulcer of right buttock, stage 2"
+ },
+ {
+  "Code": "L89.313",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 3",
+  "LongDesc": "Pressure ulcer of right buttock, stage 3"
+ },
+ {
+  "Code": "L89.314",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 4",
+  "LongDesc": "Pressure ulcer of right buttock, stage 4"
+ },
+ {
+  "Code": "L89.319",
+  "ShortDesc": "Pressure ulcer of right buttock, unspecified stage",
+  "LongDesc": "Pressure ulcer of right buttock, unspecified stage"
+ },
+ {
+  "Code": "L89.320",
+  "ShortDesc": "Pressure ulcer of left buttock, unstageable",
+  "LongDesc": "Pressure ulcer of left buttock, unstageable"
+ },
+ {
+  "Code": "L89.321",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 1",
+  "LongDesc": "Pressure ulcer of left buttock, stage 1"
+ },
+ {
+  "Code": "L89.322",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 2",
+  "LongDesc": "Pressure ulcer of left buttock, stage 2"
+ },
+ {
+  "Code": "L89.323",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 3",
+  "LongDesc": "Pressure ulcer of left buttock, stage 3"
+ },
+ {
+  "Code": "L89.324",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 4",
+  "LongDesc": "Pressure ulcer of left buttock, stage 4"
+ },
+ {
+  "Code": "L89.329",
+  "ShortDesc": "Pressure ulcer of left buttock, unspecified stage",
+  "LongDesc": "Pressure ulcer of left buttock, unspecified stage"
+ },
+ {
+  "Code": "L89.40",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unspecified stage"
+ },
+ {
+  "Code": "L89.41",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 1",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 1"
+ },
+ {
+  "Code": "L89.42",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 2",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 2"
+ },
+ {
+  "Code": "L89.43",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 3",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 3"
+ },
+ {
+  "Code": "L89.44",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 4",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 4"
+ },
+ {
+  "Code": "L89.45",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unstageable",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unstageable"
+ },
+ {
+  "Code": "L89.500",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified ankle, unstageable"
+ },
+ {
+  "Code": "L89.501",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 1"
+ },
+ {
+  "Code": "L89.502",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 2"
+ },
+ {
+  "Code": "L89.503",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 3"
+ },
+ {
+  "Code": "L89.504",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 4"
+ },
+ {
+  "Code": "L89.509",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified ankle, unspecified stage"
+ },
+ {
+  "Code": "L89.510",
+  "ShortDesc": "Pressure ulcer of right ankle, unstageable",
+  "LongDesc": "Pressure ulcer of right ankle, unstageable"
+ },
+ {
+  "Code": "L89.511",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 1",
+  "LongDesc": "Pressure ulcer of right ankle, stage 1"
+ },
+ {
+  "Code": "L89.512",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 2",
+  "LongDesc": "Pressure ulcer of right ankle, stage 2"
+ },
+ {
+  "Code": "L89.513",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 3",
+  "LongDesc": "Pressure ulcer of right ankle, stage 3"
+ },
+ {
+  "Code": "L89.514",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 4",
+  "LongDesc": "Pressure ulcer of right ankle, stage 4"
+ },
+ {
+  "Code": "L89.519",
+  "ShortDesc": "Pressure ulcer of right ankle, unspecified stage",
+  "LongDesc": "Pressure ulcer of right ankle, unspecified stage"
+ },
+ {
+  "Code": "L89.520",
+  "ShortDesc": "Pressure ulcer of left ankle, unstageable",
+  "LongDesc": "Pressure ulcer of left ankle, unstageable"
+ },
+ {
+  "Code": "L89.521",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 1",
+  "LongDesc": "Pressure ulcer of left ankle, stage 1"
+ },
+ {
+  "Code": "L89.522",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 2",
+  "LongDesc": "Pressure ulcer of left ankle, stage 2"
+ },
+ {
+  "Code": "L89.523",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 3",
+  "LongDesc": "Pressure ulcer of left ankle, stage 3"
+ },
+ {
+  "Code": "L89.524",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 4",
+  "LongDesc": "Pressure ulcer of left ankle, stage 4"
+ },
+ {
+  "Code": "L89.529",
+  "ShortDesc": "Pressure ulcer of left ankle, unspecified stage",
+  "LongDesc": "Pressure ulcer of left ankle, unspecified stage"
+ },
+ {
+  "Code": "L89.600",
+  "ShortDesc": "Pressure ulcer of unspecified heel, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified heel, unstageable"
+ },
+ {
+  "Code": "L89.601",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 1"
+ },
+ {
+  "Code": "L89.602",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 2"
+ },
+ {
+  "Code": "L89.603",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 3"
+ },
+ {
+  "Code": "L89.604",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 4"
+ },
+ {
+  "Code": "L89.609",
+  "ShortDesc": "Pressure ulcer of unspecified heel, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified heel, unspecified stage"
+ },
+ {
+  "Code": "L89.610",
+  "ShortDesc": "Pressure ulcer of right heel, unstageable",
+  "LongDesc": "Pressure ulcer of right heel, unstageable"
+ },
+ {
+  "Code": "L89.611",
+  "ShortDesc": "Pressure ulcer of right heel, stage 1",
+  "LongDesc": "Pressure ulcer of right heel, stage 1"
+ },
+ {
+  "Code": "L89.612",
+  "ShortDesc": "Pressure ulcer of right heel, stage 2",
+  "LongDesc": "Pressure ulcer of right heel, stage 2"
+ },
+ {
+  "Code": "L89.613",
+  "ShortDesc": "Pressure ulcer of right heel, stage 3",
+  "LongDesc": "Pressure ulcer of right heel, stage 3"
+ },
+ {
+  "Code": "L89.614",
+  "ShortDesc": "Pressure ulcer of right heel, stage 4",
+  "LongDesc": "Pressure ulcer of right heel, stage 4"
+ },
+ {
+  "Code": "L89.619",
+  "ShortDesc": "Pressure ulcer of right heel, unspecified stage",
+  "LongDesc": "Pressure ulcer of right heel, unspecified stage"
+ },
+ {
+  "Code": "L89.620",
+  "ShortDesc": "Pressure ulcer of left heel, unstageable",
+  "LongDesc": "Pressure ulcer of left heel, unstageable"
+ },
+ {
+  "Code": "L89.621",
+  "ShortDesc": "Pressure ulcer of left heel, stage 1",
+  "LongDesc": "Pressure ulcer of left heel, stage 1"
+ },
+ {
+  "Code": "L89.622",
+  "ShortDesc": "Pressure ulcer of left heel, stage 2",
+  "LongDesc": "Pressure ulcer of left heel, stage 2"
+ },
+ {
+  "Code": "L89.623",
+  "ShortDesc": "Pressure ulcer of left heel, stage 3",
+  "LongDesc": "Pressure ulcer of left heel, stage 3"
+ },
+ {
+  "Code": "L89.624",
+  "ShortDesc": "Pressure ulcer of left heel, stage 4",
+  "LongDesc": "Pressure ulcer of left heel, stage 4"
+ },
+ {
+  "Code": "L89.629",
+  "ShortDesc": "Pressure ulcer of left heel, unspecified stage",
+  "LongDesc": "Pressure ulcer of left heel, unspecified stage"
+ },
+ {
+  "Code": "L89.810",
+  "ShortDesc": "Pressure ulcer of head, unstageable",
+  "LongDesc": "Pressure ulcer of head, unstageable"
+ },
+ {
+  "Code": "L89.811",
+  "ShortDesc": "Pressure ulcer of head, stage 1",
+  "LongDesc": "Pressure ulcer of head, stage 1"
+ },
+ {
+  "Code": "L89.812",
+  "ShortDesc": "Pressure ulcer of head, stage 2",
+  "LongDesc": "Pressure ulcer of head, stage 2"
+ },
+ {
+  "Code": "L89.813",
+  "ShortDesc": "Pressure ulcer of head, stage 3",
+  "LongDesc": "Pressure ulcer of head, stage 3"
+ },
+ {
+  "Code": "L89.814",
+  "ShortDesc": "Pressure ulcer of head, stage 4",
+  "LongDesc": "Pressure ulcer of head, stage 4"
+ },
+ {
+  "Code": "L89.819",
+  "ShortDesc": "Pressure ulcer of head, unspecified stage",
+  "LongDesc": "Pressure ulcer of head, unspecified stage"
+ },
+ {
+  "Code": "L89.890",
+  "ShortDesc": "Pressure ulcer of other site, unstageable",
+  "LongDesc": "Pressure ulcer of other site, unstageable"
+ },
+ {
+  "Code": "L89.891",
+  "ShortDesc": "Pressure ulcer of other site, stage 1",
+  "LongDesc": "Pressure ulcer of other site, stage 1"
+ },
+ {
+  "Code": "L89.892",
+  "ShortDesc": "Pressure ulcer of other site, stage 2",
+  "LongDesc": "Pressure ulcer of other site, stage 2"
+ },
+ {
+  "Code": "L89.893",
+  "ShortDesc": "Pressure ulcer of other site, stage 3",
+  "LongDesc": "Pressure ulcer of other site, stage 3"
+ },
+ {
+  "Code": "L89.894",
+  "ShortDesc": "Pressure ulcer of other site, stage 4",
+  "LongDesc": "Pressure ulcer of other site, stage 4"
+ },
+ {
+  "Code": "L89.899",
+  "ShortDesc": "Pressure ulcer of other site, unspecified stage",
+  "LongDesc": "Pressure ulcer of other site, unspecified stage"
+ },
+ {
+  "Code": "L89.90",
+  "ShortDesc": "Pressure ulcer of unspecified site, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified site, unspecified stage"
+ },
+ {
+  "Code": "L89.91",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 1"
+ },
+ {
+  "Code": "L89.92",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 2"
+ },
+ {
+  "Code": "L89.93",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 3"
+ },
+ {
+  "Code": "L89.94",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 4"
+ },
+ {
+  "Code": "L89.95",
+  "ShortDesc": "Pressure ulcer of unspecified site, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified site, unstageable"
+ },
+ {
+  "Code": "L89.000",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified elbow, unstageable"
+ },
+ {
+  "Code": "L89.001",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 1"
+ },
+ {
+  "Code": "L89.002",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 2"
+ },
+ {
+  "Code": "L89.003",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 3"
+ },
+ {
+  "Code": "L89.004",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified elbow, stage 4"
+ },
+ {
+  "Code": "L89.009",
+  "ShortDesc": "Pressure ulcer of unspecified elbow, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified elbow, unspecified stage"
+ },
+ {
+  "Code": "L89.010",
+  "ShortDesc": "Pressure ulcer of right elbow, unstageable",
+  "LongDesc": "Pressure ulcer of right elbow, unstageable"
+ },
+ {
+  "Code": "L89.011",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 1",
+  "LongDesc": "Pressure ulcer of right elbow, stage 1"
+ },
+ {
+  "Code": "L89.012",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 2",
+  "LongDesc": "Pressure ulcer of right elbow, stage 2"
+ },
+ {
+  "Code": "L89.013",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 3",
+  "LongDesc": "Pressure ulcer of right elbow, stage 3"
+ },
+ {
+  "Code": "L89.014",
+  "ShortDesc": "Pressure ulcer of right elbow, stage 4",
+  "LongDesc": "Pressure ulcer of right elbow, stage 4"
+ },
+ {
+  "Code": "L89.019",
+  "ShortDesc": "Pressure ulcer of right elbow, unspecified stage",
+  "LongDesc": "Pressure ulcer of right elbow, unspecified stage"
+ },
+ {
+  "Code": "L89.020",
+  "ShortDesc": "Pressure ulcer of left elbow, unstageable",
+  "LongDesc": "Pressure ulcer of left elbow, unstageable"
+ },
+ {
+  "Code": "L89.021",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 1",
+  "LongDesc": "Pressure ulcer of left elbow, stage 1"
+ },
+ {
+  "Code": "L89.022",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 2",
+  "LongDesc": "Pressure ulcer of left elbow, stage 2"
+ },
+ {
+  "Code": "L89.023",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 3",
+  "LongDesc": "Pressure ulcer of left elbow, stage 3"
+ },
+ {
+  "Code": "L89.024",
+  "ShortDesc": "Pressure ulcer of left elbow, stage 4",
+  "LongDesc": "Pressure ulcer of left elbow, stage 4"
+ },
+ {
+  "Code": "L89.029",
+  "ShortDesc": "Pressure ulcer of left elbow, unspecified stage",
+  "LongDesc": "Pressure ulcer of left elbow, unspecified stage"
+ },
+ {
+  "Code": "L89.100",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified part of back, unstageable"
+ },
+ {
+  "Code": "L89.101",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 1"
+ },
+ {
+  "Code": "L89.102",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 2"
+ },
+ {
+  "Code": "L89.103",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 3"
+ },
+ {
+  "Code": "L89.104",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified part of back, stage 4"
+ },
+ {
+  "Code": "L89.109",
+  "ShortDesc": "Pressure ulcer of unspecified part of back, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified part of back, unspecified stage"
+ },
+ {
+  "Code": "L89.110",
+  "ShortDesc": "Pressure ulcer of right upper back, unstageable",
+  "LongDesc": "Pressure ulcer of right upper back, unstageable"
+ },
+ {
+  "Code": "L89.111",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 1",
+  "LongDesc": "Pressure ulcer of right upper back, stage 1"
+ },
+ {
+  "Code": "L89.112",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 2",
+  "LongDesc": "Pressure ulcer of right upper back, stage 2"
+ },
+ {
+  "Code": "L89.113",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 3",
+  "LongDesc": "Pressure ulcer of right upper back, stage 3"
+ },
+ {
+  "Code": "L89.114",
+  "ShortDesc": "Pressure ulcer of right upper back, stage 4",
+  "LongDesc": "Pressure ulcer of right upper back, stage 4"
+ },
+ {
+  "Code": "L89.119",
+  "ShortDesc": "Pressure ulcer of right upper back, unspecified stage",
+  "LongDesc": "Pressure ulcer of right upper back, unspecified stage"
+ },
+ {
+  "Code": "L89.120",
+  "ShortDesc": "Pressure ulcer of left upper back, unstageable",
+  "LongDesc": "Pressure ulcer of left upper back, unstageable"
+ },
+ {
+  "Code": "L89.121",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 1",
+  "LongDesc": "Pressure ulcer of left upper back, stage 1"
+ },
+ {
+  "Code": "L89.122",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 2",
+  "LongDesc": "Pressure ulcer of left upper back, stage 2"
+ },
+ {
+  "Code": "L89.123",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 3",
+  "LongDesc": "Pressure ulcer of left upper back, stage 3"
+ },
+ {
+  "Code": "L89.124",
+  "ShortDesc": "Pressure ulcer of left upper back, stage 4",
+  "LongDesc": "Pressure ulcer of left upper back, stage 4"
+ },
+ {
+  "Code": "L89.129",
+  "ShortDesc": "Pressure ulcer of left upper back, unspecified stage",
+  "LongDesc": "Pressure ulcer of left upper back, unspecified stage"
+ },
+ {
+  "Code": "L89.130",
+  "ShortDesc": "Pressure ulcer of right lower back, unstageable",
+  "LongDesc": "Pressure ulcer of right lower back, unstageable"
+ },
+ {
+  "Code": "L89.131",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 1",
+  "LongDesc": "Pressure ulcer of right lower back, stage 1"
+ },
+ {
+  "Code": "L89.132",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 2",
+  "LongDesc": "Pressure ulcer of right lower back, stage 2"
+ },
+ {
+  "Code": "L89.133",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 3",
+  "LongDesc": "Pressure ulcer of right lower back, stage 3"
+ },
+ {
+  "Code": "L89.134",
+  "ShortDesc": "Pressure ulcer of right lower back, stage 4",
+  "LongDesc": "Pressure ulcer of right lower back, stage 4"
+ },
+ {
+  "Code": "L89.139",
+  "ShortDesc": "Pressure ulcer of right lower back, unspecified stage",
+  "LongDesc": "Pressure ulcer of right lower back, unspecified stage"
+ },
+ {
+  "Code": "L89.140",
+  "ShortDesc": "Pressure ulcer of left lower back, unstageable",
+  "LongDesc": "Pressure ulcer of left lower back, unstageable"
+ },
+ {
+  "Code": "L89.141",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 1",
+  "LongDesc": "Pressure ulcer of left lower back, stage 1"
+ },
+ {
+  "Code": "L89.142",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 2",
+  "LongDesc": "Pressure ulcer of left lower back, stage 2"
+ },
+ {
+  "Code": "L89.143",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 3",
+  "LongDesc": "Pressure ulcer of left lower back, stage 3"
+ },
+ {
+  "Code": "L89.144",
+  "ShortDesc": "Pressure ulcer of left lower back, stage 4",
+  "LongDesc": "Pressure ulcer of left lower back, stage 4"
+ },
+ {
+  "Code": "L89.149",
+  "ShortDesc": "Pressure ulcer of left lower back, unspecified stage",
+  "LongDesc": "Pressure ulcer of left lower back, unspecified stage"
+ },
+ {
+  "Code": "L89.150",
+  "ShortDesc": "Pressure ulcer of sacral region, unstageable",
+  "LongDesc": "Pressure ulcer of sacral region, unstageable"
+ },
+ {
+  "Code": "L89.151",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 1",
+  "LongDesc": "Pressure ulcer of sacral region, stage 1"
+ },
+ {
+  "Code": "L89.152",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 2",
+  "LongDesc": "Pressure ulcer of sacral region, stage 2"
+ },
+ {
+  "Code": "L89.153",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 3",
+  "LongDesc": "Pressure ulcer of sacral region, stage 3"
+ },
+ {
+  "Code": "L89.154",
+  "ShortDesc": "Pressure ulcer of sacral region, stage 4",
+  "LongDesc": "Pressure ulcer of sacral region, stage 4"
+ },
+ {
+  "Code": "L89.159",
+  "ShortDesc": "Pressure ulcer of sacral region, unspecified stage",
+  "LongDesc": "Pressure ulcer of sacral region, unspecified stage"
+ },
+ {
+  "Code": "L89.200",
+  "ShortDesc": "Pressure ulcer of unspecified hip, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified hip, unstageable"
+ },
+ {
+  "Code": "L89.201",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 1"
+ },
+ {
+  "Code": "L89.202",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 2"
+ },
+ {
+  "Code": "L89.203",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 3"
+ },
+ {
+  "Code": "L89.204",
+  "ShortDesc": "Pressure ulcer of unspecified hip, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified hip, stage 4"
+ },
+ {
+  "Code": "L89.209",
+  "ShortDesc": "Pressure ulcer of unspecified hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified hip, unspecified stage"
+ },
+ {
+  "Code": "L89.210",
+  "ShortDesc": "Pressure ulcer of right hip, unstageable",
+  "LongDesc": "Pressure ulcer of right hip, unstageable"
+ },
+ {
+  "Code": "L89.211",
+  "ShortDesc": "Pressure ulcer of right hip, stage 1",
+  "LongDesc": "Pressure ulcer of right hip, stage 1"
+ },
+ {
+  "Code": "L89.212",
+  "ShortDesc": "Pressure ulcer of right hip, stage 2",
+  "LongDesc": "Pressure ulcer of right hip, stage 2"
+ },
+ {
+  "Code": "L89.213",
+  "ShortDesc": "Pressure ulcer of right hip, stage 3",
+  "LongDesc": "Pressure ulcer of right hip, stage 3"
+ },
+ {
+  "Code": "L89.214",
+  "ShortDesc": "Pressure ulcer of right hip, stage 4",
+  "LongDesc": "Pressure ulcer of right hip, stage 4"
+ },
+ {
+  "Code": "L89.219",
+  "ShortDesc": "Pressure ulcer of right hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of right hip, unspecified stage"
+ },
+ {
+  "Code": "L89.220",
+  "ShortDesc": "Pressure ulcer of left hip, unstageable",
+  "LongDesc": "Pressure ulcer of left hip, unstageable"
+ },
+ {
+  "Code": "L89.221",
+  "ShortDesc": "Pressure ulcer of left hip, stage 1",
+  "LongDesc": "Pressure ulcer of left hip, stage 1"
+ },
+ {
+  "Code": "L89.222",
+  "ShortDesc": "Pressure ulcer of left hip, stage 2",
+  "LongDesc": "Pressure ulcer of left hip, stage 2"
+ },
+ {
+  "Code": "L89.223",
+  "ShortDesc": "Pressure ulcer of left hip, stage 3",
+  "LongDesc": "Pressure ulcer of left hip, stage 3"
+ },
+ {
+  "Code": "L89.224",
+  "ShortDesc": "Pressure ulcer of left hip, stage 4",
+  "LongDesc": "Pressure ulcer of left hip, stage 4"
+ },
+ {
+  "Code": "L89.229",
+  "ShortDesc": "Pressure ulcer of left hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of left hip, unspecified stage"
+ },
+ {
+  "Code": "L89.300",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified buttock, unstageable"
+ },
+ {
+  "Code": "L89.301",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 1"
+ },
+ {
+  "Code": "L89.302",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 2"
+ },
+ {
+  "Code": "L89.303",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 3"
+ },
+ {
+  "Code": "L89.304",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified buttock, stage 4"
+ },
+ {
+  "Code": "L89.309",
+  "ShortDesc": "Pressure ulcer of unspecified buttock, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified buttock, unspecified stage"
+ },
+ {
+  "Code": "L89.310",
+  "ShortDesc": "Pressure ulcer of right buttock, unstageable",
+  "LongDesc": "Pressure ulcer of right buttock, unstageable"
+ },
+ {
+  "Code": "L89.311",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 1",
+  "LongDesc": "Pressure ulcer of right buttock, stage 1"
+ },
+ {
+  "Code": "L89.312",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 2",
+  "LongDesc": "Pressure ulcer of right buttock, stage 2"
+ },
+ {
+  "Code": "L89.313",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 3",
+  "LongDesc": "Pressure ulcer of right buttock, stage 3"
+ },
+ {
+  "Code": "L89.314",
+  "ShortDesc": "Pressure ulcer of right buttock, stage 4",
+  "LongDesc": "Pressure ulcer of right buttock, stage 4"
+ },
+ {
+  "Code": "L89.319",
+  "ShortDesc": "Pressure ulcer of right buttock, unspecified stage",
+  "LongDesc": "Pressure ulcer of right buttock, unspecified stage"
+ },
+ {
+  "Code": "L89.320",
+  "ShortDesc": "Pressure ulcer of left buttock, unstageable",
+  "LongDesc": "Pressure ulcer of left buttock, unstageable"
+ },
+ {
+  "Code": "L89.321",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 1",
+  "LongDesc": "Pressure ulcer of left buttock, stage 1"
+ },
+ {
+  "Code": "L89.322",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 2",
+  "LongDesc": "Pressure ulcer of left buttock, stage 2"
+ },
+ {
+  "Code": "L89.323",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 3",
+  "LongDesc": "Pressure ulcer of left buttock, stage 3"
+ },
+ {
+  "Code": "L89.324",
+  "ShortDesc": "Pressure ulcer of left buttock, stage 4",
+  "LongDesc": "Pressure ulcer of left buttock, stage 4"
+ },
+ {
+  "Code": "L89.329",
+  "ShortDesc": "Pressure ulcer of left buttock, unspecified stage",
+  "LongDesc": "Pressure ulcer of left buttock, unspecified stage"
+ },
+ {
+  "Code": "L89.40",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unspecified stage",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unspecified stage"
+ },
+ {
+  "Code": "L89.41",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 1",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 1"
+ },
+ {
+  "Code": "L89.42",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 2",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 2"
+ },
+ {
+  "Code": "L89.43",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 3",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 3"
+ },
+ {
+  "Code": "L89.44",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 4",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, stage 4"
+ },
+ {
+  "Code": "L89.45",
+  "ShortDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unstageable",
+  "LongDesc": "Pressure ulcer of contiguous site of back, buttock and hip, unstageable"
+ },
+ {
+  "Code": "L89.500",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified ankle, unstageable"
+ },
+ {
+  "Code": "L89.501",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 1"
+ },
+ {
+  "Code": "L89.502",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 2"
+ },
+ {
+  "Code": "L89.503",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 3"
+ },
+ {
+  "Code": "L89.504",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified ankle, stage 4"
+ },
+ {
+  "Code": "L89.509",
+  "ShortDesc": "Pressure ulcer of unspecified ankle, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified ankle, unspecified stage"
+ },
+ {
+  "Code": "L89.510",
+  "ShortDesc": "Pressure ulcer of right ankle, unstageable",
+  "LongDesc": "Pressure ulcer of right ankle, unstageable"
+ },
+ {
+  "Code": "L89.511",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 1",
+  "LongDesc": "Pressure ulcer of right ankle, stage 1"
+ },
+ {
+  "Code": "L89.512",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 2",
+  "LongDesc": "Pressure ulcer of right ankle, stage 2"
+ },
+ {
+  "Code": "L89.513",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 3",
+  "LongDesc": "Pressure ulcer of right ankle, stage 3"
+ },
+ {
+  "Code": "L89.514",
+  "ShortDesc": "Pressure ulcer of right ankle, stage 4",
+  "LongDesc": "Pressure ulcer of right ankle, stage 4"
+ },
+ {
+  "Code": "L89.519",
+  "ShortDesc": "Pressure ulcer of right ankle, unspecified stage",
+  "LongDesc": "Pressure ulcer of right ankle, unspecified stage"
+ },
+ {
+  "Code": "L89.520",
+  "ShortDesc": "Pressure ulcer of left ankle, unstageable",
+  "LongDesc": "Pressure ulcer of left ankle, unstageable"
+ },
+ {
+  "Code": "L89.521",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 1",
+  "LongDesc": "Pressure ulcer of left ankle, stage 1"
+ },
+ {
+  "Code": "L89.522",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 2",
+  "LongDesc": "Pressure ulcer of left ankle, stage 2"
+ },
+ {
+  "Code": "L89.523",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 3",
+  "LongDesc": "Pressure ulcer of left ankle, stage 3"
+ },
+ {
+  "Code": "L89.524",
+  "ShortDesc": "Pressure ulcer of left ankle, stage 4",
+  "LongDesc": "Pressure ulcer of left ankle, stage 4"
+ },
+ {
+  "Code": "L89.529",
+  "ShortDesc": "Pressure ulcer of left ankle, unspecified stage",
+  "LongDesc": "Pressure ulcer of left ankle, unspecified stage"
+ },
+ {
+  "Code": "L89.600",
+  "ShortDesc": "Pressure ulcer of unspecified heel, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified heel, unstageable"
+ },
+ {
+  "Code": "L89.601",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 1"
+ },
+ {
+  "Code": "L89.602",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 2"
+ },
+ {
+  "Code": "L89.603",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 3"
+ },
+ {
+  "Code": "L89.604",
+  "ShortDesc": "Pressure ulcer of unspecified heel, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified heel, stage 4"
+ },
+ {
+  "Code": "L89.609",
+  "ShortDesc": "Pressure ulcer of unspecified heel, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified heel, unspecified stage"
+ },
+ {
+  "Code": "L89.610",
+  "ShortDesc": "Pressure ulcer of right heel, unstageable",
+  "LongDesc": "Pressure ulcer of right heel, unstageable"
+ },
+ {
+  "Code": "L89.611",
+  "ShortDesc": "Pressure ulcer of right heel, stage 1",
+  "LongDesc": "Pressure ulcer of right heel, stage 1"
+ },
+ {
+  "Code": "L89.612",
+  "ShortDesc": "Pressure ulcer of right heel, stage 2",
+  "LongDesc": "Pressure ulcer of right heel, stage 2"
+ },
+ {
+  "Code": "L89.613",
+  "ShortDesc": "Pressure ulcer of right heel, stage 3",
+  "LongDesc": "Pressure ulcer of right heel, stage 3"
+ },
+ {
+  "Code": "L89.614",
+  "ShortDesc": "Pressure ulcer of right heel, stage 4",
+  "LongDesc": "Pressure ulcer of right heel, stage 4"
+ },
+ {
+  "Code": "L89.619",
+  "ShortDesc": "Pressure ulcer of right heel, unspecified stage",
+  "LongDesc": "Pressure ulcer of right heel, unspecified stage"
+ },
+ {
+  "Code": "L89.620",
+  "ShortDesc": "Pressure ulcer of left heel, unstageable",
+  "LongDesc": "Pressure ulcer of left heel, unstageable"
+ },
+ {
+  "Code": "L89.621",
+  "ShortDesc": "Pressure ulcer of left heel, stage 1",
+  "LongDesc": "Pressure ulcer of left heel, stage 1"
+ },
+ {
+  "Code": "L89.622",
+  "ShortDesc": "Pressure ulcer of left heel, stage 2",
+  "LongDesc": "Pressure ulcer of left heel, stage 2"
+ },
+ {
+  "Code": "L89.623",
+  "ShortDesc": "Pressure ulcer of left heel, stage 3",
+  "LongDesc": "Pressure ulcer of left heel, stage 3"
+ },
+ {
+  "Code": "L89.624",
+  "ShortDesc": "Pressure ulcer of left heel, stage 4",
+  "LongDesc": "Pressure ulcer of left heel, stage 4"
+ },
+ {
+  "Code": "L89.629",
+  "ShortDesc": "Pressure ulcer of left heel, unspecified stage",
+  "LongDesc": "Pressure ulcer of left heel, unspecified stage"
+ },
+ {
+  "Code": "L89.810",
+  "ShortDesc": "Pressure ulcer of head, unstageable",
+  "LongDesc": "Pressure ulcer of head, unstageable"
+ },
+ {
+  "Code": "L89.811",
+  "ShortDesc": "Pressure ulcer of head, stage 1",
+  "LongDesc": "Pressure ulcer of head, stage 1"
+ },
+ {
+  "Code": "L89.812",
+  "ShortDesc": "Pressure ulcer of head, stage 2",
+  "LongDesc": "Pressure ulcer of head, stage 2"
+ },
+ {
+  "Code": "L89.813",
+  "ShortDesc": "Pressure ulcer of head, stage 3",
+  "LongDesc": "Pressure ulcer of head, stage 3"
+ },
+ {
+  "Code": "L89.814",
+  "ShortDesc": "Pressure ulcer of head, stage 4",
+  "LongDesc": "Pressure ulcer of head, stage 4"
+ },
+ {
+  "Code": "L89.819",
+  "ShortDesc": "Pressure ulcer of head, unspecified stage",
+  "LongDesc": "Pressure ulcer of head, unspecified stage"
+ },
+ {
+  "Code": "L89.890",
+  "ShortDesc": "Pressure ulcer of other site, unstageable",
+  "LongDesc": "Pressure ulcer of other site, unstageable"
+ },
+ {
+  "Code": "L89.891",
+  "ShortDesc": "Pressure ulcer of other site, stage 1",
+  "LongDesc": "Pressure ulcer of other site, stage 1"
+ },
+ {
+  "Code": "L89.892",
+  "ShortDesc": "Pressure ulcer of other site, stage 2",
+  "LongDesc": "Pressure ulcer of other site, stage 2"
+ },
+ {
+  "Code": "L89.893",
+  "ShortDesc": "Pressure ulcer of other site, stage 3",
+  "LongDesc": "Pressure ulcer of other site, stage 3"
+ },
+ {
+  "Code": "L89.894",
+  "ShortDesc": "Pressure ulcer of other site, stage 4",
+  "LongDesc": "Pressure ulcer of other site, stage 4"
+ },
+ {
+  "Code": "L89.899",
+  "ShortDesc": "Pressure ulcer of other site, unspecified stage",
+  "LongDesc": "Pressure ulcer of other site, unspecified stage"
+ },
+ {
+  "Code": "L89.90",
+  "ShortDesc": "Pressure ulcer of unspecified site, unspecified stage",
+  "LongDesc": "Pressure ulcer of unspecified site, unspecified stage"
+ },
+ {
+  "Code": "L89.91",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 1",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 1"
+ },
+ {
+  "Code": "L89.92",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 2",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 2"
+ },
+ {
+  "Code": "L89.93",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 3",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 3"
+ },
+ {
+  "Code": "L89.94",
+  "ShortDesc": "Pressure ulcer of unspecified site, stage 4",
+  "LongDesc": "Pressure ulcer of unspecified site, stage 4"
+ },
+ {
+  "Code": "L89.95",
+  "ShortDesc": "Pressure ulcer of unspecified site, unstageable",
+  "LongDesc": "Pressure ulcer of unspecified site, unstageable"
+ }
+]

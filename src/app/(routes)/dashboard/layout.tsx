@@ -7,11 +7,13 @@ function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-        <AppHeader/>
-        {children}
+    <div className="pt-[60px]">
+      <AppHeader />
+      {children}
     </div>
-  )
+  );
 }
 
+
 export default DashboardLayout
+

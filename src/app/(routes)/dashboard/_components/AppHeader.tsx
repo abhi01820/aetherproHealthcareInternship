@@ -12,14 +12,14 @@ const AppHeader = () => {
 
   const menuOptions = [
     { id: 1, name: 'Home', path: '/dashboard' },
-    { id: 2, name: 'History', path: '/history' },
+    { id: 2, name: 'EHR-Report', path: '/EHRReport ' },
     { id: 3, name: 'Pricing', path: '/pricing' },
     { id: 4, name: 'Profile', path: '/profile' },
   ];
 
   return (
-    <div className="relative">
-      <div className="flex items-center justify-between shadow-xl m-4 border-2 border-gray-300 rounded-xl px-6 py-3 bg-white">
+    <div className="relative z-50"> {/* 🔥 Make header layered above */}
+      <div className="fixed top-0 left-0 right-0 mx-1 backdrop-blur-md bg-white/60 shadow-5xl border border-gray-200  px-6 py-3 flex items-center justify-between transition duration-300"> {/* 🔥 Sticky & transparent */}
         <div className="flex items-center gap-4">
           <Image src="/logo.svg" alt="logo" width={300} height={150} />
         </div>
@@ -49,9 +49,9 @@ const AppHeader = () => {
         </div>
       </div>
 
-      {/* Mobile Menu with animation */}
+      {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-[100px] left-4 right-4 z-50 bg-white/90 border border-gray-200 shadow-lg rounded-xl px-6 py-4 backdrop-blur transition-all duration-300 ease-in-out transform ${
+        className={`md:hidden absolute top-[100px] left-4 right-4 z-40 bg-white/90 border border-gray-200 shadow-lg rounded-xl px-6 py-4 backdrop-blur transition-all duration-300 ease-in-out transform ${
           menuOpen
             ? 'opacity-100 scale-100 translate-y-0'
             : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
