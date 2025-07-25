@@ -37,6 +37,7 @@ interface Patient {
   physicalExam?: string;
   assessment?: string;
   treatmentPlan?: string;
+  [key: string]: string | number | string[] | Medication[] | PatientVitals | undefined;
 }
 
 interface EHRContextProps {

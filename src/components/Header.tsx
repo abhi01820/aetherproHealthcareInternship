@@ -34,7 +34,7 @@ export default function Header() {
           NAT ID
         </div>
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
-          {patient.natId || 'XOOC'}
+           XOOC
         </div>
 
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
