@@ -8,6 +8,7 @@ interface CPTRow {
 }
 
 interface CPTSearchPanelProps {
+  rowIndex:number;
   onSelect: (code: string, desc: string) => void;
   onClose: () => void;
 }

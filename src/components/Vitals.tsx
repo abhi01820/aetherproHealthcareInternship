@@ -116,7 +116,7 @@ const [selectionMade, setSelectionMade] = useState(false);
         <ICDSearchPanel
           onSelect={handleICDSelect}
           onClose={() => setPanelRowIndex(null)}
-          position="inline"
+          
         />
       )}
 
