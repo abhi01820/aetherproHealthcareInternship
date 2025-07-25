@@ -1,5 +1,5 @@
 import { db } from "@/config/db";
-import { usersTable } from "@/config/schema"; // ✅ Make sure the file is lowercase: 'schema.ts'
+import { usersTable } from "@/config/schema";
 import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
@@ -25,13 +25,16 @@ export async function POST() {
           email: user.primaryEmailAddress.emailAddress,
           credits: 10,
         })
-        .returning(); // ✅ Return inserted fields
+        .returning();
 
       return NextResponse.json(inserted[0]);
     }
 
     return NextResponse.json(existingUsers[0]);
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message || "Unknown error" }, { status: 500 });
+  } catch (e) {
+    if (e instanceof Error) {
+      return NextResponse.json({ error: e.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: "Unknown error" }, { status: 500 });
   }
 }
