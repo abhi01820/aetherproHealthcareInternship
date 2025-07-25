@@ -24,15 +24,16 @@ export default function ClinicalDesktopUI() {
   const [cptPanelRowIndex, setCptPanelRowIndex] = useState<number | null>(null);
   const [medPanelRowIndex, setMedPanelRowIndex] = useState<number | null>(null);
 
-  const [icdRows, setIcdRows] = useState<ICDRow[]>([
-    { code: "", desc: "", type: "Primary" },
-    { code: "", desc: "", type: "Secondary" },
-    ...Array.from({ length: 19 }).map(() => ({
-      code: "",
-      desc: "",
-      type: "Secondary",
-    })),
-  ]);
+const [icdRows, setIcdRows] = useState<ICDRow[]>([
+  { code: "", desc: "", type: "Primary" },
+  { code: "", desc: "", type: "Secondary" },
+  ...Array.from({ length: 19 }).map(() => ({
+    code: "",
+    desc: "",
+    type: "Secondary" as const,
+  })),
+]);
+
 
   const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(
     Array(7).fill({ code: "", desc: "" })
