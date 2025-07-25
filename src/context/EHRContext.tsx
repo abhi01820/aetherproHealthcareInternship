@@ -18,6 +18,7 @@ interface Medication {
 interface Patient {
   name: string;
   age: number;
+  dob:string,
   gender: string;
   phone: string;
   insurance: string;
@@ -27,6 +28,7 @@ interface Patient {
   visitId:number,
   nationalId:number,
   nationality:string,
+  insuranceId:number,
   vitals?: PatientVitals;
   diagnosis?: string[];
   procedures?: string[];
@@ -45,6 +47,7 @@ interface EHRContextProps {
 const defaultPatient: Patient = {
   name: "RAJ",
   age: 36 ,
+  dob:"20-01-2005",
   gender: "Male",
   phone: "123-450-2322",
   insurance: "AetherPro Healthcare",
@@ -53,7 +56,8 @@ const defaultPatient: Patient = {
   patientId:1234,
   visitId:2343,
   nationalId:789,
-  nationality:"Indian" 
+  nationality:"Indian" ,
+  insuranceId:123456
 };
 
 const EHRContext = createContext<EHRContextProps>({
