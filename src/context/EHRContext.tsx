@@ -23,6 +23,7 @@ interface Patient {
   phone: string;
   insurance: string;
   payer: string;
+  speciality:string;
   doctor: string;
   patientId:number,
   visitId:number,
@@ -58,7 +59,8 @@ const defaultPatient: Patient = {
   visitId:2343,
   nationalId:789,
   nationality:"Indian" ,
-  insuranceId:123456
+  insuranceId:123456,
+  speciality:"Cardiologist"
 };
 
 const EHRContext = createContext<EHRContextProps>({

@@ -65,7 +65,7 @@ export default function Header() {
           <span className="border-b-2 border-gray-800 pb-1">{patient.age || 'N/A'}</span>
 
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">NAT ID</span>
-          <span className="border-b-2 border-gray-800 pb-1 truncate">{patient.natId || 'XOOCXOOOCXO00000C'}</span>
+          <span className="border-b-2 border-gray-800 pb-1 truncate">{patient.nationalId || 'XOOCXOOOCXO00000C'}</span>
 
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">Nationality</span>
           <span className="border-b-2 border-gray-800 pb-1">{patient.nationality || 'INDIAN'}</span>
