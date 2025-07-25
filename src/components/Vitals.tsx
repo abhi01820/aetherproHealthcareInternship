@@ -56,7 +56,8 @@ export default function ClinicalDesktopUI() {
     }[]
   );
 
-  const [selectionMade, setSelectionMade] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const [selectionMade, setSelectionMade] = useState(false);
   const [hideSDX, setHideSDX] = useState(false);
 
   const handleICDSelect = (entry: {
