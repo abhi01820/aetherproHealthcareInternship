@@ -23,6 +23,10 @@ interface Patient {
   insurance: string;
   payer: string;
   doctor: string;
+  patientId:number,
+  visitId:number,
+  nationalId:number,
+  nationality:string,
   vitals?: PatientVitals;
   diagnosis?: string[];
   procedures?: string[];
@@ -46,6 +50,10 @@ const defaultPatient: Patient = {
   insurance: "AetherPro Healthcare",
   payer: "AetherPro Health Inc.",
   doctor: "Dr. Priya Sharma",
+  patientId:1234,
+  visitId:2343,
+  nationalId:789,
+  nationality:"Indian" 
 };
 
 const EHRContext = createContext<EHRContextProps>({
