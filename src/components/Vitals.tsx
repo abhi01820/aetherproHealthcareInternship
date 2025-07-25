@@ -24,16 +24,15 @@ export default function ClinicalDesktopUI() {
   const [cptPanelRowIndex, setCptPanelRowIndex] = useState<number | null>(null);
   const [medPanelRowIndex, setMedPanelRowIndex] = useState<number | null>(null);
 
-const [icdRows, setIcdRows] = useState<ICDRow[]>([
-  { code: "", desc: "", type: "Primary" },
-  { code: "", desc: "", type: "Secondary" },
-  ...Array.from({ length: 19 }).map(() => ({
-    code: "",
-    desc: "",
-    type: "Secondary" as const,
-  })),
-]);
-
+  const [icdRows, setIcdRows] = useState<ICDRow[]>([
+    { code: "", desc: "", type: "Primary" },
+    { code: "", desc: "", type: "Secondary" },
+    ...Array.from({ length: 19 }).map(() => ({
+      code: "",
+      desc: "",
+      type: "Secondary" as const,
+    })),
+  ]);
 
   const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(
     Array(7).fill({ code: "", desc: "" })
@@ -58,7 +57,7 @@ const [icdRows, setIcdRows] = useState<ICDRow[]>([
   );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const [selectionMade, setSelectionMade] = useState(false);
+  const [selectionMade, setSelectionMade] = useState(false);
   const [hideSDX, setHideSDX] = useState(false);
 
   const handleICDSelect = (entry: {
@@ -116,7 +115,6 @@ const [selectionMade, setSelectionMade] = useState(false);
         <ICDSearchPanel
           onSelect={handleICDSelect}
           onClose={() => setPanelRowIndex(null)}
-          
         />
       )}
 
@@ -430,7 +428,7 @@ const [selectionMade, setSelectionMade] = useState(false);
                     procedures: cptRows.map((r) => r.desc).filter(Boolean),
                     medications: medRows.map((med) => ({
                       name: med.tradeName,
-                      dosage:med.days,
+                      dosage: `${med.days}`, // Convert number to string
                       frequency: med.freq,
                     })),
                     chiefComplaint,
