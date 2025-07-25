@@ -1,27 +1,37 @@
 import { db } from "@/config/db";
-import { usersTable } from "@/config/schema";
+import { usersTable } from "@/config/schema"; // ✅ Make sure the file is lowercase: 'schema.ts'
 import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
+export async function POST() {
+  const user = await currentUser();
 
-export async function POST(){
-    const user =await currentUser();
+  if (!user?.primaryEmailAddress?.emailAddress) {
+    return NextResponse.json({ error: "User email not found" }, { status: 400 });
+  }
 
-    try {
-        const users=await db.select().from(usersTable)
-        .where(eq(usersTable.email,user?.primaryEmailAddress?.emailAddress));
-        if (users?.length==0){
-            const result=await db.insert(usersTable).values({
-                name:user?.fullName,
-                email:user?.primaryEmailAddress?.emailAddress,
-                credits:10
-            }).returning({ usersTable });
-            return NextResponse.json(result[0]?.usersTable);
-        }
-        return NextResponse.json(users[0]);
-    } catch (e) {
-        return NextResponse.json(e);
+  try {
+    const existingUsers = await db
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.email, user.primaryEmailAddress.emailAddress));
+
+    if (existingUsers.length === 0) {
+      const inserted = await db
+        .insert(usersTable)
+        .values({
+          name: user.fullName,
+          email: user.primaryEmailAddress.emailAddress,
+          credits: 10,
+        })
+        .returning(); // ✅ Return inserted fields
+
+      return NextResponse.json(inserted[0]);
     }
-}
 
+    return NextResponse.json(existingUsers[0]);
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message || "Unknown error" }, { status: 500 });
+  }
+}
