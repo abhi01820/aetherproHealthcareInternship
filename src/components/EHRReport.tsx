@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useEHR } from "@/context/EHRContext";
 import {
   User,
@@ -21,7 +21,6 @@ import {
 
 const EHRReport: React.FC = () => {
   const { patient,clinic } = useEHR();
-  const [currentDateTime, setCurrentDateTime] = useState<string>("");
 
   const [doctorName, setDoctorName] = useState("Dr. John Smith");
   const [license, setLicense] = useState("MD-12345");
@@ -33,19 +32,21 @@ const EHRReport: React.FC = () => {
   const [showReferral, setShowReferral] = useState(false);
   const [referralDetails, setReferralDetails] = useState("");
 
-  useEffect(() => {
-    const now = new Date();
-    const date = now.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-    const time = now.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    setCurrentDateTime(`${date} at ${time}`);
-  }, []);
+  // useEffect(() => {
+  //   const now = new Date();
+  //   const date = now.toLocaleDateString("en-US", {
+  //     year: "numeric",
+  //     month: "long",
+  //     day: "numeric",
+  //   });
+  //   const time = now.toLocaleTimeString("en-US", {
+  //     hour: "2-digit",
+  //     minute: "2-digit",
+  //   });
+  //   setCurrentDateTime(`${date} at ${time}`);
+  // }, []);
+
+
 
   const handlePrint = () => {
     window.print();
@@ -65,42 +66,44 @@ const EHRReport: React.FC = () => {
     }
   };
 
-  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setClinic((prev) => ({
-          ...prev,
-          logoUrl: event.target?.result as string,
-        }));
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  };
-  const Modal = ({
-    title,
-    children,
-    onClose,
-  }: {
-    title: string;
-    children: React.ReactNode;
-    onClose: () => void;
-  }) => {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg relative">
-          <h3 className="text-lg font-semibold mb-4">{title}</h3>
-          <button
-            className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
-            onClick={onClose}
-          >
-            &times;
-          </button>
-          {children}
-        </div>
-      </div>
-    );
-  };
+  // const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     const reader = new FileReader();
+  //     reader.onload = (event) => {
+  //       setClinic((prev) => ({
+  //         ...prev,
+  //         logoUrl: event.target?.result as string,
+  //       }));
+  //     };
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   }
+  // };
+  // const Modal = ({
+  //   title,
+  //   children,
+  //   onClose,
+  // }: {
+  //   title: string;
+  //   children: React.ReactNode;
+  //   onClose: () => void;
+  // }) => {
+  //   return (
+  //     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  //       <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg relative">
+  //         <h3 className="text-lg font-semibold mb-4">{title}</h3>
+  //         <button
+  //           className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
+  //           onClick={onClose}
+  //         >
+  //           &times;
+  //         </button>
+  //         {children}
+  //       </div>
+  //     </div>
+  //   );
+  // };
+
+
 
   return (
     <div className="max-w-5xl mx-auto print:border p-10 bg-white shadow-lg text-black text-sm leading-tight print:shadow-none">
@@ -378,7 +381,7 @@ const EHRReport: React.FC = () => {
         {/* Doctor's Signature */}
         <div className="flex-1">
           <p className="text-sm font-bold text-gray-700 mb-1">
-            Doctor's Signature & Seal
+            Doctors Signature & Seal
           </p>
           {signatureSaved ? (
             <div className="border-b border-gray-400 pb-1">
@@ -398,7 +401,7 @@ const EHRReport: React.FC = () => {
         {/* Patient's Signature */}
         <div className="flex-1 text-right">
           <p className="text-sm font-bold text-gray-700 mb-1">
-            Patient's Signature
+            Patients Signature
           </p>
           {patientSignatureSaved ? (
             <div className="border-b border-gray-400 pb-1 inline-block">
@@ -493,7 +496,7 @@ const EHRReport: React.FC = () => {
       {showSignatureModal && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded p-6 w-96">
-            <h3 className="text-lg font-semibold mb-4">Doctor's Signature</h3>
+            <h3 className="text-lg font-semibold mb-4">Doctors Signature</h3>
             <label className="block text-sm font-medium mb-1">Name</label>
             <input
               className="w-full mb-2 p-2 border rounded"
