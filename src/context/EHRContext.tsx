@@ -10,10 +10,13 @@ interface PatientVitals {
 }
 
 interface CptRow {
+  desc: string;
   code: string;
   description: string;
   type: string;
 }
+
+
 
 
 interface Medication {
@@ -57,7 +60,9 @@ interface Patient {
 
   // NEWLY ADDED FIELDS FOR EHR DATA
   vitals: PatientVitals;
-  diagnosis: { code: string; description: string; type: "Primary" | "Secondary" }[];
+  diagnosis: {
+    desc: string; code: string; description: string; type: "Primary" | "Secondary" 
+}[];
   procedures: string[];
   medications: Medication[];
   chiefComplaint: string;
@@ -107,8 +112,13 @@ const defaultPatient: Patient = {
     Pulse: "",
   },
   diagnosis: [
-  { code: "I10", description: "Essential (primary) hypertension", type: "Primary" },
-  { code: "E11", description: "Type 2 diabetes mellitus", type: "Secondary" },
+  {
+    code: "I10", description: "Essential (primary) hypertension", type: "Primary",
+    desc: ""
+  },
+  { code: "E11", description: "Type 2 diabetes mellitus", type: "Secondary",
+    desc:""
+   },
 ],
   procedures: [],
   medications: [],

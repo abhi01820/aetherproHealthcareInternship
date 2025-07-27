@@ -35,6 +35,7 @@ export default function ClinicalDesktopUI() {
     })),
   ]);
 
+
   const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(
     Array(7).fill({ code: "", desc: "" })
   );
@@ -108,12 +109,17 @@ useEffect(() => {
     .filter((row) => row.code && row.desc)
     .map((row) => ({
       code: row.code,
-      description: row.desc,
+      desc: row.desc,
       type: row.type, // Primary or Secondary
     }));
 
   setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
 }, [icdRows, setPatient]);
+
+
+
+
+
 
 
   const [chiefComplaint, setChiefComplaint] = useState("");
@@ -264,7 +270,7 @@ useEffect(() => {
                           {displayCode}
                         </div>
 
-                        {/* Column 2: ICD Description */}
+                        {/* Column 2: ICD desc */}
                         <div className="p-1 border-l border-gray-100 min-h-[32px] flex items-center justify-start px-3 text-gray-800">
                           {row.desc || ""}
                         </div>
@@ -428,35 +434,29 @@ useEffect(() => {
               <button
                 className="bg-black text-white py-4 cursor-pointer px-4 rounded"
                 onClick={() => {
-                  setPatient((prev) => ({
-                    ...prev,
-                    vitals: {
-                      Temperature: "39°C",
-                      BP: "128/80 mmHg",
-                      Pulse: "92 bpm",
-                    },
-                    diagnosis: icdRows
-                      .filter((r) => r.code && r.desc)
-                      .map((r) => ({
-                        code: r.code,
-                        description: r.desc,
-                        type: r.type,
-                      })),
-                    procedures: cptRows.map((r) => r.desc).filter(Boolean),
-                    cptRows: cptRows.filter((r) => r.code && r.desc),
-                    medications: medRows.map((med) => ({
-                      name: med.tradeName,
-                      dosage: `${med.days}`,
-                      frequency: med.freq,
-                    })),
-                    chiefComplaint,
-                    physicalExam,
-                    assessment,
-                    treatmentPlan,
-                  }));
+  setPatient((prev) => ({
+    ...prev,
+    vitals: {
+      Temperature: "39°C",
+      BP: "128/80 mmHg",
+      Pulse: "92 bpm",
+    },
+    procedures: cptRows.map((r) => r.desc).filter(Boolean),
+    cptRows: cptRows.filter((r) => r.code && r.desc),
+    medications: medRows.map((med) => ({
+      name: med.tradeName,
+      dosage: `${med.days}`,
+      frequency: med.freq,
+    })),
+    chiefComplaint,
+    physicalExam,
+    assessment,
+    treatmentPlan,
+  }));
 
-                  router.push("/EHRReport");
-                }}
+  router.push("/EHRReport");
+}}
+
               >
                 Generate E-HR
               </button>

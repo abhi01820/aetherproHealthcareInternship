@@ -33,8 +33,6 @@ const EHRReport: React.FC = () => {
   const [showReferral, setShowReferral] = useState(false);
   const [referralDetails, setReferralDetails] = useState("");
 
-
-
   const handlePrint = () => {
     window.print();
   };
@@ -52,7 +50,6 @@ const EHRReport: React.FC = () => {
       setShowPatientModal(false);
     }
   };
-
 
   return (
     <div className="max-w-5xl mx-auto print:border p-10 bg-white shadow-lg text-black text-sm leading-tight print:shadow-none">
@@ -226,7 +223,7 @@ const EHRReport: React.FC = () => {
               <div className="font-medium">Primary Diagnosis:</div>
               <p className="ml-4">
                 • {patient.diagnosis[0]?.code ?? "N/A"} -{" "}
-                {patient.diagnosis[0]?.description ?? "N/A"} (
+                {patient.diagnosis[0]?.desc ?? "N/A"} (
                 {patient.diagnosis[0]?.type ?? "N/A"})
               </p>
 
@@ -236,7 +233,7 @@ const EHRReport: React.FC = () => {
                   <ul className="list-disc pl-8 space-y-1">
                     {patient.diagnosis.slice(1).map((d, i) => (
                       <li key={i}>
-                        {d?.code ?? "N/A"} - {d?.description ?? "N/A"} (
+                        {d?.code ?? "N/A"} - {d?.desc ?? "N/A"} (
                         {d?.type ?? "N/A"})
                       </li>
                     ))}
@@ -250,43 +247,46 @@ const EHRReport: React.FC = () => {
         </div>
 
         {/* Investigations - CPT Codes */}
-{patient.cptRows?.length > 0 && (
-  <div className="mb-4">
-    <h3 className="font-semibold text-gray-800 mb-2">
-      Investigations (CPT Codes)
-    </h3>
-    <div className="overflow-x-auto rounded border border-gray-300">
-      <table className="min-w-full text-sm text-left">
-        <thead className="bg-gray-100 text-gray-700">
-          <tr>
-            <th className="px-4 py-2 border-b border-gray-300">CPT Code</th>
-            <th className="px-4 py-2 border-b border-gray-300">Description</th>
-            <th className="px-4 py-2 border-b border-gray-300">Qty</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patient.cptRows.map((row, index) => (
-            <tr
-              key={index}
-              className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
-            >
-              <td className="px-4 py-2 border-b border-gray-300">
-                {row.code || "-"}
-              </td>
-              <td className="px-4 py-2 border-b border-gray-300">
-                {row.desc || "-"}
-              </td>
-              <td className="px-4 py-2 border-b border-gray-300">
-                {row.quantity || 1}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-)}
-
+        {patient.cptRows?.length > 0 && (
+          <div className="mb-4">
+            <h3 className="font-semibold text-gray-800 mb-2">
+              Investigations (CPT Codes)
+            </h3>
+            <div className="overflow-x-auto rounded border border-gray-300">
+              <table className="min-w-full text-sm text-left">
+                <thead className="bg-white-100 text-gray-700">
+                  <tr>
+                    <th className="px-4 py-2 border-b border-gray-300">
+                      CPT Code
+                    </th>
+                    <th className="px-4 py-2 border-b border-gray-300">
+                      Description
+                    </th>
+                    <th className="px-4 py-2 border-b border-gray-300">Qty</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {patient.cptRows.map((row, index) => (
+                    <tr
+                      key={index}
+                      className={index % 2 === 0 ? "bg-white" : "bg-white-50"}
+                    >
+                      <td className="px-4 py-2 border-b border-gray-300">
+                        {row.code || "-"}
+                      </td>
+                      <td className="px-4 py-2 border-b border-gray-300">
+                        {row.desc || "-"}
+                      </td>
+                      <td className="px-4 py-2 border-b border-gray-300">
+                        {row.type || 1}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
         {/* Treatment Plan */}
         <div className="border-b border-black-300 pb-1">
