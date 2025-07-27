@@ -103,17 +103,18 @@ export default function ClinicalDesktopUI() {
     setMedPanelRowIndex(null);
   };
 
-  useEffect(() => {
-    const updatedDiagnosis = icdRows
-      .filter((row) => row.code && row.desc)
-      .map((row) => ({
-        code: row.code,
-        description: row.desc,
-        type: row.type, // Primary or Secondary
-      }));
+useEffect(() => {
+  const updatedDiagnosis = icdRows
+    .filter((row) => row.code && row.desc)
+    .map((row) => ({
+      code: row.code,
+      description: row.desc,
+      type: row.type, // Primary or Secondary
+    }));
 
-    setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
-  }, [setPatient]);
+  setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
+}, [icdRows, setPatient]);
+
 
   const [chiefComplaint, setChiefComplaint] = useState("");
   const [physicalExam, setPhysicalExam] = useState("");
