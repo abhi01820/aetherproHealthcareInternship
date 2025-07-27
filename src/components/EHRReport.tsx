@@ -1,6 +1,6 @@
 "use client";
 
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useEHR } from "@/context/EHRContext";
 import {
   User,
@@ -18,9 +18,10 @@ import {
   BadgeCheck,
   Landmark,
 } from "lucide-react";
+import Image from "next/image";
 
 const EHRReport: React.FC = () => {
-  const { patient,clinic } = useEHR();
+  const { patient, clinic } = useEHR();
 
   const [doctorName, setDoctorName] = useState("Dr. John Smith");
   const [license, setLicense] = useState("MD-12345");
@@ -45,8 +46,6 @@ const EHRReport: React.FC = () => {
   //   });
   //   setCurrentDateTime(`${date} at ${time}`);
   // }, []);
-
-
 
   const handlePrint = () => {
     window.print();
@@ -103,8 +102,6 @@ const EHRReport: React.FC = () => {
   //   );
   // };
 
-
-
   return (
     <div className="max-w-5xl mx-auto print:border p-10 bg-white shadow-lg text-black text-sm leading-tight print:shadow-none">
       {/* Header */}
@@ -116,17 +113,13 @@ const EHRReport: React.FC = () => {
         <div className="flex items-start gap-4">
           {clinic.logoUrl && (
             <div className="flex-shrink-0">
-              {clinic.logoUrl ? (
-                <img
-                  src={clinic.logoUrl}
-                  alt="Clinic Logo"
-                  className="h-18 w-18 rounded-full object-cover print:h-16 print:w-16"
-                />
-              ) : (
-                <div className="h-18 w-18 flex items-center justify-center rounded-full bg-gray-200 print:h-16 print:w-16">
-                  <Landmark className="h-10 w-10 text-gray-600 print:h-8 print:w-8" />
-                </div>
-              )}
+              <Image
+                src={clinic.logoUrl}
+                alt="Clinic Logo"
+                width={72} // or desired dimensions
+                height={72}
+                className="rounded-full object-cover print:h-16 print:w-16"
+              />
             </div>
           )}
           <div className="leading-snug">

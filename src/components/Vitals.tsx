@@ -113,7 +113,7 @@ export default function ClinicalDesktopUI() {
       }));
 
     setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
-  }, [icdRows]);
+  }, [setPatient]);
 
   const [chiefComplaint, setChiefComplaint] = useState("");
   const [physicalExam, setPhysicalExam] = useState("");
