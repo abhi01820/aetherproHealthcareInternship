@@ -25,12 +25,34 @@
 }
 
 
+
+
 @media print {
-  @page {
-    margin: 0;
-  }
   body {
-    margin: 0 !important;
-    padding: 0 !important;
+    background: white;
+    color: black;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  /* Prevent page break inside important sections */
+  .avoid-break {
+    page-break-inside: avoid;
+  }
+
+  /* Optional: Hide footer or navigation if needed */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Optional: Add a page break after specific sections */
+  .page-break {
+    page-break-after: always;
   }
 }

@@ -13,7 +13,7 @@ const AppHeader = () => {
   const menuOptions = [
     { id: 1, name: 'Home', path: '/dashboard' },
     { id: 2, name: 'EHR-Report', path: '/EHRReport ' },
-    { id: 3, name: 'Pricing', path: '/pricing' },
+    { id: 3, name: 'Patient Info', path: '/patientInfo' },
     { id: 4, name: 'Profile', path: '/profile' },
   ];
 

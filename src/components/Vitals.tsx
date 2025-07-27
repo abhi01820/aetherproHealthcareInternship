@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ICDSearchPanel from "@/components/ICDSearchPanel";
 import CPTSearchPanel from "@/components/CPTSearchPanel";
 import MedicineSearchPanel from "@/components/MedicineSearchPanel";
@@ -20,6 +20,7 @@ interface CPTInvestigationRow {
 
 export default function ClinicalDesktopUI() {
   const router = useRouter();
+  const { patient, setPatient } = useEHR();
   const [panelRowIndex, setPanelRowIndex] = useState<number | null>(null);
   const [cptPanelRowIndex, setCptPanelRowIndex] = useState<number | null>(null);
   const [medPanelRowIndex, setMedPanelRowIndex] = useState<number | null>(null);
@@ -102,7 +103,18 @@ export default function ClinicalDesktopUI() {
     setMedPanelRowIndex(null);
   };
 
-  const { setPatient } = useEHR();
+  useEffect(() => {
+    const updatedDiagnosis = icdRows
+      .filter((row) => row.code && row.desc)
+      .map((row) => ({
+        code: row.code,
+        description: row.desc,
+        type: row.type, // Primary or Secondary
+      }));
+
+    setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
+  }, [icdRows]);
+
   const [chiefComplaint, setChiefComplaint] = useState("");
   const [physicalExam, setPhysicalExam] = useState("");
   const [assessment, setAssessment] = useState("");
@@ -136,15 +148,16 @@ export default function ClinicalDesktopUI() {
       )}
 
       {/* Vitals Row */}
-      <div className="flex flex-col md:flex-row font-semibold ">
+      <div className="flex flex-col md:flex-row font-semibold">
         <div className="md:w-[80%] bg-cyan-200 px-2 py-1 flex flex-wrap items-center gap-4">
           <span className="font-bold">Vitals:</span>
-          <span>Temp: 39°C</span>
-          <span>BP: 128/80 mmHg</span>
-          <span>HR: 92 bpm</span>
-          <span>Weight: 65</span>
-          <span>Height: 171</span>
+          <span>Temp: {patient.temperature || "N/A"}°C</span>
+          <span>BP: {patient.bloodPressure || "N/A"} mmHg</span>
+          <span>HR: {patient.heartRate || "N/A"} bpm</span>
+          <span>Weight: {patient.weight || "N/A"} kg</span>
+          <span>Height: {patient.height || "N/A"} cm</span>
         </div>
+
         <div className="md:w-[10%] bg-cyan-200 border-t md:border-r md:border-t-0 border-black flex items-center justify-center text-center"></div>
         <div className="md:w-[20%] bg-green-100 border-t md:border-l md:border-t-0 border-black flex items-center justify-center text-center">
           Smart EMR <br />- Powered by AI
@@ -154,14 +167,14 @@ export default function ClinicalDesktopUI() {
       <div className="flex flex-col md:flex-row">
         <div className="md:w-[90%] bg-[#fffbea] md:border-b-0 md:border-l border-black">
           <div className="flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-6/10">
               <div className="text-center font-bold border border-gray-300 py-1.5 bg-yellow-100">
                 Subjective Notes/Chief Complaint
               </div>
               <textarea
                 value={chiefComplaint}
                 onChange={(e) => setChiefComplaint(e.target.value)}
-                className="w-full border-x border-b border-gray-300 p-2 italic text-red-600 bg-white min-h-[124px] resize-none focus:outline-none"
+                className="w-full border-x border-b border-gray-300 p-2 italic text-black-600 bg-white min-h-[124px] resize-none focus:outline-none"
                 placeholder="Enter chief complaint..."
               />
 
@@ -171,8 +184,7 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={physicalExam}
                 onChange={(e) => setPhysicalExam(e.target.value)}
-                className="w-full border border-gray-300 p-2 italic text-red-600 
-           bg-[repeating-linear-gradient(to_bottom,_#f3f4f6_0px,_#f3f4f6_1px,_white_1px,_white_22px)]
+                className="w-full border border-gray-300 p-2 italic text-black-600 bg-white
            min-h-[90px] resize-none focus:outline-none"
                 placeholder="Enter Physical examination..."
               />
@@ -182,8 +194,7 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={assessment}
                 onChange={(e) => setAssessment(e.target.value)}
-                className="w-full border border-gray-300 p-2 italic text-red-600 
-           bg-[repeating-linear-gradient(to_bottom,_#f3f4f6_0px,_#f3f4f6_1px,_white_1px,_white_22px)]
+                className="w-full border border-gray-300 p-2 bg-white italic text-black-600 
            min-h-[90px] resize-none focus:outline-none"
                 placeholder="Enter Assessment/Diagnosis..."
               />
@@ -193,14 +204,13 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={treatmentPlan}
                 onChange={(e) => setTreatmentPlan(e.target.value)}
-                className="w-full border border-gray-300 p-2 italic text-red-600 
-           bg-[repeating-linear-gradient(to_bottom,_#f3f4f6_0px,_#f3f4f6_1px,_white_1px,_white_22px)]
+                className="w-full border border-gray-300 p-2 italic bg-white text-black-600 
            min-h-[90px] resize-none focus:outline-none"
                 placeholder="Enter Treatment Plan..."
               />
             </div>
 
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-4/10">
               {/* Header Row */}
               <div className="grid grid-cols-[100px_1fr] text-center font-bold bg-yellow-100 border-l border-b border-gray-300 sticky top-0 z-10">
                 <div className="p-1 border-r border-gray-300">ICD Code</div>
@@ -249,7 +259,7 @@ export default function ClinicalDesktopUI() {
                         className="grid grid-cols-[100px_1.5fr] text-center bg-white border-l border-b border-gray-100 items-center"
                       >
                         {/* Column 1: ICD Code / PDX / SDX */}
-                        <div className="p-1 text-red-300 min-h-[32px] flex items-center justify-center">
+                        <div className="p-1 text-black-500 min-h-[32px] flex items-center justify-center">
                           {displayCode}
                         </div>
 
@@ -424,11 +434,18 @@ export default function ClinicalDesktopUI() {
                       BP: "128/80 mmHg",
                       Pulse: "92 bpm",
                     },
-                    diagnosis: icdRows.map((r) => r.desc).filter(Boolean),
+                    diagnosis: icdRows
+                      .filter((r) => r.code && r.desc)
+                      .map((r) => ({
+                        code: r.code,
+                        description: r.desc,
+                        type: r.type,
+                      })),
                     procedures: cptRows.map((r) => r.desc).filter(Boolean),
+                    cptRows: cptRows.filter((r) => r.code && r.desc),
                     medications: medRows.map((med) => ({
                       name: med.tradeName,
-                      dosage: `${med.days}`, // Convert number to string
+                      dosage: `${med.days}`,
                       frequency: med.freq,
                     })),
                     chiefComplaint,
@@ -436,6 +453,7 @@ export default function ClinicalDesktopUI() {
                     assessment,
                     treatmentPlan,
                   }));
+
                   router.push("/EHRReport");
                 }}
               >

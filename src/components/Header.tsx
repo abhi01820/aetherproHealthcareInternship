@@ -3,7 +3,7 @@ import React from 'react';
 import { useEHR } from '@/context/EHRContext'; // ✅ import the context
 
 export default function Header() {
-  const { patient } = useEHR(); // ✅ access context data
+  const { patient, clinic } = useEHR();
 
   return (
     <div className="w-full font-sans">
@@ -65,7 +65,7 @@ export default function Header() {
           <span className="border-b-2 border-gray-800 pb-1">{patient.age || 'N/A'}</span>
 
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">NAT ID</span>
-          <span className="border-b-2 border-gray-800 pb-1 truncate">{patient.nationalId || 'XOOCXOOOCXO00000C'}</span>
+          <span className="border-b-2 border-gray-800 pb-1 truncate">{patient.nationalId || 'N/A'}</span>
 
           <span className="font-bold text-lg border-b-2 border-gray-800 pb-1">Nationality</span>
           <span className="border-b-2 border-gray-800 pb-1">{patient.nationality || 'INDIAN'}</span>
@@ -76,24 +76,26 @@ export default function Header() {
       </div>
 
       {/* Doctor Details */}
-      <div className="bg-yellow-100 py-2 px-10 text-lg border-r border-l border-gray-800">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0">
-          <div>
-            <span className="text-blue-700 font-bold">Doctor: </span>
-            <span className="text-black font-bold">{patient.doctor || 'Dr. Smith'}</span>
-          </div>
-          <div>
-            <span className="text-blue-700 font-bold">Speciality: </span>
-            <span className="text-black font-bold ">{patient.speciality || 'Cardiologist'}</span>
-          </div>
-          <div>
-            <span className="text-blue-700 font-bold">Date: </span>
-            <span className="text-black font-bold ">
-              {new Date().toLocaleDateString()} | {new Date().toLocaleTimeString()}
-            </span>
-          </div>
-        </div>
-      </div>
+      {/* Doctor Details from Clinic */}
+<div className="bg-yellow-100 py-2 px-10 text-lg border-r border-l border-gray-800">
+  <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0">
+    <div>
+      <span className="text-blue-700 font-bold">Doctor: </span>
+      <span className="text-black font-bold">{clinic.doctor || 'Dr. Smith'}</span>
+    </div>
+    <div>
+      <span className="text-blue-700 font-bold">Speciality: </span>
+      <span className="text-black font-bold ">{clinic.speciality || 'Cardiologist'}</span>
+    </div>
+    <div>
+      <span className="text-blue-700 font-bold">Date: </span>
+      <span className="text-black font-bold ">
+        {new Date().toLocaleDateString()} | {new Date().toLocaleTimeString()}
+      </span>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 }
