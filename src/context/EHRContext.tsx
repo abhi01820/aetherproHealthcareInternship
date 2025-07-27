@@ -9,6 +9,13 @@ interface PatientVitals {
   Pulse: string;
 }
 
+interface CptRow {
+  code: string;
+  description: string;
+  type: string;
+}
+
+
 interface Medication {
   name: string;
   dosage: string;
@@ -57,6 +64,7 @@ interface Patient {
   physicalExam: string;
   assessment: string;
   treatmentPlan: string;
+  cptRows: CptRow[];
   [key: string]: unknown;
 }
 
@@ -108,6 +116,7 @@ const defaultPatient: Patient = {
   physicalExam: "",
   assessment: "",
   treatmentPlan: "",
+  cptRows:[],
 };
 
 // Default clinic state

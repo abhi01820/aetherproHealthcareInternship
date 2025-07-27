@@ -33,19 +33,7 @@ const EHRReport: React.FC = () => {
   const [showReferral, setShowReferral] = useState(false);
   const [referralDetails, setReferralDetails] = useState("");
 
-  // useEffect(() => {
-  //   const now = new Date();
-  //   const date = now.toLocaleDateString("en-US", {
-  //     year: "numeric",
-  //     month: "long",
-  //     day: "numeric",
-  //   });
-  //   const time = now.toLocaleTimeString("en-US", {
-  //     hour: "2-digit",
-  //     minute: "2-digit",
-  //   });
-  //   setCurrentDateTime(`${date} at ${time}`);
-  // }, []);
+
 
   const handlePrint = () => {
     window.print();
@@ -65,42 +53,6 @@ const EHRReport: React.FC = () => {
     }
   };
 
-  // const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     const reader = new FileReader();
-  //     reader.onload = (event) => {
-  //       setClinic((prev) => ({
-  //         ...prev,
-  //         logoUrl: event.target?.result as string,
-  //       }));
-  //     };
-  //     reader.readAsDataURL(e.target.files[0]);
-  //   }
-  // };
-  // const Modal = ({
-  //   title,
-  //   children,
-  //   onClose,
-  // }: {
-  //   title: string;
-  //   children: React.ReactNode;
-  //   onClose: () => void;
-  // }) => {
-  //   return (
-  //     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-  //       <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg relative">
-  //         <h3 className="text-lg font-semibold mb-4">{title}</h3>
-  //         <button
-  //           className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
-  //           onClick={onClose}
-  //         >
-  //           &times;
-  //         </button>
-  //         {children}
-  //       </div>
-  //     </div>
-  //   );
-  // };
 
   return (
     <div className="max-w-5xl mx-auto print:border p-10 bg-white shadow-lg text-black text-sm leading-tight print:shadow-none">
@@ -298,45 +250,43 @@ const EHRReport: React.FC = () => {
         </div>
 
         {/* Investigations - CPT Codes */}
-        {patient.cptRows?.length > 0 && (
-          <div>
-            <h3 className="font-bold text-gray-700 mb-1">
-              Investigations (CPT Codes)
-            </h3>
-            <div className="overflow-x-auto rounded border border-gray-300">
-              <table className="min-w-full text-sm">
-                <thead className="bg-white-100 text-gray-700">
-                  <tr>
-                    <th className="px-4 py-1 text-left border-b border-gray-300">
-                      CPT Code
-                    </th>
-                    <th className="px-4 py-1 text-left border-b border-gray-300">
-                      Description
-                    </th>
-                    <th className="px-4 py-1 text-left border-b border-gray-300">
-                      Qty
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {patient.cptRows.map((row, index) => (
-                    <tr key={index}>
-                      <td className="px-4 py-2 border-b border-gray-300">
-                        {row.code || "-"}
-                      </td>
-                      <td className="px-4 py-2 border-b border-gray-300">
-                        {row.desc || "-"}
-                      </td>
-                      <td className="px-4 py-2 border-b border-gray-300">
-                        {row.quantity || 1}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+{patient.cptRows?.length > 0 && (
+  <div className="mb-4">
+    <h3 className="font-semibold text-gray-800 mb-2">
+      Investigations (CPT Codes)
+    </h3>
+    <div className="overflow-x-auto rounded border border-gray-300">
+      <table className="min-w-full text-sm text-left">
+        <thead className="bg-gray-100 text-gray-700">
+          <tr>
+            <th className="px-4 py-2 border-b border-gray-300">CPT Code</th>
+            <th className="px-4 py-2 border-b border-gray-300">Description</th>
+            <th className="px-4 py-2 border-b border-gray-300">Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          {patient.cptRows.map((row, index) => (
+            <tr
+              key={index}
+              className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+            >
+              <td className="px-4 py-2 border-b border-gray-300">
+                {row.code || "-"}
+              </td>
+              <td className="px-4 py-2 border-b border-gray-300">
+                {row.desc || "-"}
+              </td>
+              <td className="px-4 py-2 border-b border-gray-300">
+                {row.quantity || 1}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
+
 
         {/* Treatment Plan */}
         <div className="border-b border-black-300 pb-1">
