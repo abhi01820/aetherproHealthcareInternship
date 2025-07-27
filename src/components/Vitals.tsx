@@ -35,7 +35,6 @@ export default function ClinicalDesktopUI() {
     })),
   ]);
 
-
   const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(
     Array(7).fill({ code: "", desc: "" })
   );
@@ -104,28 +103,52 @@ export default function ClinicalDesktopUI() {
     setMedPanelRowIndex(null);
   };
 
-useEffect(() => {
-  const updatedDiagnosis = icdRows
-    .filter((row) => row.code && row.desc)
-    .map((row) => ({
-      code: row.code,
-      desc: row.desc,
-      type: row.type, // Primary or Secondary
-    }));
+  useEffect(() => {
+    const updatedDiagnosis = icdRows
+      .filter((row) => row.code && row.desc)
+      .map((row) => ({
+        code: row.code,
+        desc: row.desc,
+        type: row.type, // Primary or Secondary
+      }));
 
-  setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
-}, [icdRows, setPatient]);
-
-
+    setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
+  }, [icdRows, setPatient]);
 
 
-
-
+  
 
   const [chiefComplaint, setChiefComplaint] = useState("");
   const [physicalExam, setPhysicalExam] = useState("");
   const [assessment, setAssessment] = useState("");
   const [treatmentPlan, setTreatmentPlan] = useState("");
+
+
+  const handleGenerateEHR = () => {
+    const updatedPatient = {
+      ...patient,
+      procedures: cptRows.map((r) => r.desc).filter(Boolean),
+      cptRows: cptRows.filter((r) => r.code && r.desc),
+      medications: medRows.map((med) => ({
+        name: med.tradeName,
+        dosage: `${med.days}`,
+        frequency: med.freq,
+      })),
+      chiefComplaint,
+      physicalExam,
+      assessment,
+      treatmentPlan,
+    };
+
+    setPatient(updatedPatient);
+
+    // Push only after the state is set
+    setTimeout(() => {
+      router.push("/EHRReport");
+    }, 100); // slight delay to ensure state commits
+  };
+
+
 
   return (
     <div className="w-full border-2 border-black relative text-sm">
@@ -432,34 +455,11 @@ useEffect(() => {
                 Claims Database
               </button>
               <button
-                className="bg-black text-white py-4 cursor-pointer px-4 rounded"
-                onClick={() => {
-  setPatient((prev) => ({
-    ...prev,
-    vitals: {
-      Temperature: "39°C",
-      BP: "128/80 mmHg",
-      Pulse: "92 bpm",
-    },
-    procedures: cptRows.map((r) => r.desc).filter(Boolean),
-    cptRows: cptRows.filter((r) => r.code && r.desc),
-    medications: medRows.map((med) => ({
-      name: med.tradeName,
-      dosage: `${med.days}`,
-      frequency: med.freq,
-    })),
-    chiefComplaint,
-    physicalExam,
-    assessment,
-    treatmentPlan,
-  }));
-
-  router.push("/EHRReport");
-}}
-
-              >
-                Generate E-HR
-              </button>
+        className="bg-black text-white py-4 cursor-pointer px-4 rounded"
+        onClick={handleGenerateEHR}
+      >
+        Generate E-HR
+      </button>
             </div>
           </div>
         </div>

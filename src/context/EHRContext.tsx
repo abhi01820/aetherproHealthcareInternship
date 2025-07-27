@@ -4,6 +4,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 interface PatientVitals {
+  weight: string;
   Temperature: string;
   BP: string;
   Pulse: string;
@@ -110,6 +111,7 @@ const defaultPatient: Patient = {
     Temperature: "",
     BP: "",
     Pulse: "",
+    weight:"",
   },
   diagnosis: [
   {
