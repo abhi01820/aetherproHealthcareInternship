@@ -16,7 +16,10 @@ interface ICDRow {
 interface CPTInvestigationRow {
   code: string;
   desc: string;
+  type: string;
 }
+
+
 
 export default function ClinicalDesktopUI() {
   const router = useRouter();
@@ -36,12 +39,12 @@ export default function ClinicalDesktopUI() {
   ]);
 
   const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(
-    Array(7).fill({ code: "", desc: "" })
+    Array.from({ length: 7 }, () => ({ code: "", desc: "", type: "" }))
   );
 
   const handleCptSelect = (index: number, code: string, desc: string) => {
     const newRows = [...cptRows];
-    newRows[index] = { code, desc };
+    newRows[index] = { code, desc, type: "" };
     setCptRows(newRows);
     setCptPanelRowIndex(null);
   };
@@ -111,6 +114,7 @@ export default function ClinicalDesktopUI() {
         desc: row.desc,
         type: row.type, // Primary or Secondary
       }));
+      
 
     setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
   }, [icdRows, setPatient]);
@@ -124,29 +128,41 @@ export default function ClinicalDesktopUI() {
   const [treatmentPlan, setTreatmentPlan] = useState("");
 
 
-  const handleGenerateEHR = () => {
-    const updatedPatient = {
-      ...patient,
-      procedures: cptRows.map((r) => r.desc).filter(Boolean),
-      cptRows: cptRows.filter((r) => r.code && r.desc),
-      medications: medRows.map((med) => ({
-        name: med.tradeName,
-        dosage: `${med.days}`,
-        frequency: med.freq,
-      })),
-      chiefComplaint,
-      physicalExam,
-      assessment,
-      treatmentPlan,
-    };
 
-    setPatient(updatedPatient);
 
-    // Push only after the state is set
-    setTimeout(() => {
-      router.push("/EHRReport");
-    }, 100); // slight delay to ensure state commits
+
+
+
+
+
+
+
+  
+
+ const handleGenerateEHR = () => {
+  const updatedPatient = {
+    ...patient,
+    procedures: cptRows.map((r) => r.desc).filter(Boolean),
+    cptRows: cptRows.filter((r) => r.code && r.desc).map((r) => ({ ...r, type: r.type || "Primary" })),
+    medications: medRows.map((med) => ({
+      name: med.tradeName,
+      dosage: `${med.days}`,
+      frequency: med.freq,
+    })),
+    chiefComplaint,
+    physicalExam,
+    assessment,
+    treatmentPlan,
   };
+  console.log("start");
+console.log( updatedPatient);
+  setPatient(updatedPatient);
+setTimeout(() => {
+  // double-check patient is updated before navigating
+  console.log("Final Patient Before Push:", updatedPatient);
+  router.push("/EHRReport");
+}, 300); // increase delay slightly
+};
 
 
 
@@ -343,19 +359,19 @@ export default function ClinicalDesktopUI() {
                       <span className="w-full text-center">
                         {row.desc || "-"}
                       </span>
-                      {row.code && (
-                        <button
-                          className="text-red-500 cursor-pointer font-semibold"
-                          onClick={() => {
-                            const updated = [...cptRows];
-                            updated[i] = { code: "", desc: "" };
-                            setCptRows(updated);
-                          }}
-                          title="Remove CPT"
-                        >
-                          ✕
-                        </button>
-                      )}
+                          {row.code && (
+                            <button
+                              className="text-red-500 cursor-pointer font-semibold"
+                              onClick={() => {
+                                const updated = [...cptRows];
+                                updated[i] = { code: "", desc: "", type: "" };
+                                setCptRows(updated);
+                              }}
+                              title="Remove CPT"
+                            >
+                              ✕
+                            </button>
+                          )}
                     </div>
                     <div className="p-1 border-l border-gray-100">
                       <input

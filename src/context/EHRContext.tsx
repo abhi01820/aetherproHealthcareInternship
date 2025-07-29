@@ -10,11 +10,11 @@ interface PatientVitals {
   Pulse: string;
 }
 
+
 interface CptRow {
   desc: string;
   code: string;
-  description: string;
-  type: string;
+  type: "Primary" | "Secondary" | string;
 }
 
 
@@ -37,7 +37,8 @@ interface ClinicInfo {
   speciality: string;
 }
 
-interface Patient {
+
+export interface Patient {
   name: string;
   age: number;
   dob: string;
@@ -62,8 +63,10 @@ interface Patient {
   // NEWLY ADDED FIELDS FOR EHR DATA
   vitals: PatientVitals;
   diagnosis: {
-    desc: string; code: string; description: string; type: "Primary" | "Secondary" 
-}[];
+    desc: string;
+    code: string;
+    type: "Primary" | "Secondary" | string;
+  }[];
   procedures: string[];
   medications: Medication[];
   chiefComplaint: string;
@@ -111,24 +114,27 @@ const defaultPatient: Patient = {
     Temperature: "",
     BP: "",
     Pulse: "",
-    weight:"",
+    weight: "",
   },
   diagnosis: [
-  {
-    code: "I10", description: "Essential (primary) hypertension", type: "Primary",
-    desc: ""
-  },
-  { code: "E11", description: "Type 2 diabetes mellitus", type: "Secondary",
-    desc:""
-   },
-],
+    {
+      code: "I10",
+      desc: "Essential (primary) hypertension",
+      type: "Primary",
+    },
+    {
+      code: "E11",
+      desc: "Type 2 diabetes mellitus",
+      type: "Secondary",
+    },
+  ],
   procedures: [],
   medications: [],
   chiefComplaint: "",
   physicalExam: "",
   assessment: "",
   treatmentPlan: "",
-  cptRows:[],
+  cptRows: [],
 };
 
 // Default clinic state
