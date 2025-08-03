@@ -19,8 +19,6 @@ interface CPTInvestigationRow {
   type: string;
 }
 
-
-
 export default function ClinicalDesktopUI() {
   const router = useRouter();
   const { patient, setPatient } = useEHR();
@@ -69,6 +67,12 @@ export default function ClinicalDesktopUI() {
     ShortDesc: string;
     LongDesc: string;
   }) => {
+    // Check for duplicate code
+    if (icdRows.some((row) => row.code === entry.Code)) {
+      // Silently ignore duplicate
+      setPanelRowIndex(null);
+      return;
+    }
     const updated = [...icdRows];
     const emptyIndex = updated.findIndex((r) => r.code === "" && r.desc === "");
     if (emptyIndex !== -1) {
@@ -114,57 +118,41 @@ export default function ClinicalDesktopUI() {
         desc: row.desc,
         type: row.type, // Primary or Secondary
       }));
-      
 
     setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
   }, [icdRows, setPatient]);
-
-
-  
 
   const [chiefComplaint, setChiefComplaint] = useState("");
   const [physicalExam, setPhysicalExam] = useState("");
   const [assessment, setAssessment] = useState("");
   const [treatmentPlan, setTreatmentPlan] = useState("");
 
-
-
-
-
-
-
-
-
-
-
-  
-
- const handleGenerateEHR = () => {
-  const updatedPatient = {
-    ...patient,
-    procedures: cptRows.map((r) => r.desc).filter(Boolean),
-    cptRows: cptRows.filter((r) => r.code && r.desc).map((r) => ({ ...r, type: r.type || "Primary" })),
-    medications: medRows.map((med) => ({
-      name: med.tradeName,
-      dosage: `${med.days}`,
-      frequency: med.freq,
-    })),
-    chiefComplaint,
-    physicalExam,
-    assessment,
-    treatmentPlan,
+  const handleGenerateEHR = () => {
+    const updatedPatient = {
+      ...patient,
+      procedures: cptRows.map((r) => r.desc).filter(Boolean),
+      cptRows: cptRows
+        .filter((r) => r.code && r.desc)
+        .map((r) => ({ ...r, type: r.type || "Primary" })),
+      medications: medRows.map((med) => ({
+        name: med.tradeName,
+        dosage: `${med.days}`,
+        frequency: med.freq,
+      })),
+      chiefComplaint,
+      physicalExam,
+      assessment,
+      treatmentPlan,
+    };
+    console.log("start");
+    console.log(updatedPatient);
+    setPatient(updatedPatient);
+    setTimeout(() => {
+      // double-check patient is updated before navigating
+      console.log("Final Patient Before Push:", updatedPatient);
+      router.push("/EHRReport");
+    }, 300); // increase delay slightly
   };
-  console.log("start");
-console.log( updatedPatient);
-  setPatient(updatedPatient);
-setTimeout(() => {
-  // double-check patient is updated before navigating
-  console.log("Final Patient Before Push:", updatedPatient);
-  router.push("/EHRReport");
-}, 300); // increase delay slightly
-};
-
-
 
   return (
     <div className="w-full border-2 border-black relative text-sm">
@@ -359,19 +347,19 @@ setTimeout(() => {
                       <span className="w-full text-center">
                         {row.desc || "-"}
                       </span>
-                          {row.code && (
-                            <button
-                              className="text-red-500 cursor-pointer font-semibold"
-                              onClick={() => {
-                                const updated = [...cptRows];
-                                updated[i] = { code: "", desc: "", type: "" };
-                                setCptRows(updated);
-                              }}
-                              title="Remove CPT"
-                            >
-                              ✕
-                            </button>
-                          )}
+                      {row.code && (
+                        <button
+                          className="text-red-500 cursor-pointer font-semibold"
+                          onClick={() => {
+                            const updated = [...cptRows];
+                            updated[i] = { code: "", desc: "", type: "" };
+                            setCptRows(updated);
+                          }}
+                          title="Remove CPT"
+                        >
+                          ✕
+                        </button>
+                      )}
                     </div>
                     <div className="p-1 border-l border-gray-100">
                       <input
@@ -390,6 +378,13 @@ setTimeout(() => {
           <div>
             <div className="text-center font-bold py-1.5 bg-pink-200">
               Medicine prescribed
+              <button
+                className="ml-2 bg-blue-200 cursor-pointer hover:bg-blue-300 rounded px-1"
+                onClick={() => setMedPanelRowIndex(0)}
+                title="Search Medicine"
+              >
+                🔍
+              </button>
             </div>
             <div className="overflow-y-auto scrollbar-hide max-h-[115px] relative">
               <table className="w-full text-sm text-center border border-gray-300">
@@ -412,13 +407,6 @@ setTimeout(() => {
                     </th>
                     <th className="border border-gray-300 px-2 py-1">
                       Remarks
-                      <button
-                        className="ml-2 bg-blue-200 cursor-pointer hover:bg-blue-300 rounded px-1"
-                        onClick={() => setMedPanelRowIndex(0)}
-                        title="Search Medicine"
-                      >
-                        🔍
-                      </button>
                     </th>
                   </tr>
                 </thead>
@@ -471,11 +459,11 @@ setTimeout(() => {
                 Claims Database
               </button>
               <button
-        className="bg-black text-white py-4 cursor-pointer px-4 rounded"
-        onClick={handleGenerateEHR}
-      >
-        Generate E-HR
-      </button>
+                className="bg-black text-white py-4 cursor-pointer px-4 rounded"
+                onClick={handleGenerateEHR}
+              >
+                Generate E-HR
+              </button>
             </div>
           </div>
         </div>

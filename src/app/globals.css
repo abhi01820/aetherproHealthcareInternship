@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind base, components, and utilities are imported via build tool configuration */
 
 
 .scrollbar-hide {
@@ -40,6 +38,12 @@
   img {
     max-width: 100%;
   }
+  
+  .print-section {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0.5rem;
+  }
 
   /* Prevent page break inside important sections */
   .avoid-break {
@@ -51,8 +55,19 @@
     display: none !important;
   }
 
+  .print-area {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem;
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    color: #000;
+  }
+
   /* Optional: Add a page break after specific sections */
   .page-break {
     page-break-after: always;
   }
 }
+
+
+

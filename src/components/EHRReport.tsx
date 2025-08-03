@@ -13,7 +13,6 @@ import {
   Phone,
   MapPin,
   IdCard,
-  Shield,
   FileText,
   BadgeCheck,
   Landmark,
@@ -92,97 +91,107 @@ const EHRReport: React.FC = () => {
         </div>
       </div>
 
-      <div className="print:grid print:grid-cols-3 print:gap-4 print:text-sm">
+      <div className="print:flex print:flex-col print:gap-4 print:text-sm  print-area  ">
+
+        
         {/* Patient Information */}
-        <div className="border-b border-black-300  pb-2 mb-2">
-          <h2 className="text-base font-semibold mb-1 flex items-center gap-2 text-bold">
-            <User className="w-4 h-4" /> Patient Information
+        <div className="border-b border-black-300 pb-2 mb-2 print:mb-0 print:border-b-0  print-section   ">
+          <h2 className="text-base font-semibold mb-1 flex items-center gap-2 text-bold print:flex-col print:items-start">
+            Patient Information
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-800">
-            <p className="flex items-center gap-2">
-              <User className="w-4 h-4 text-gray-500" />
-              <strong>Name:</strong> {patient.name}
-            </p>
-            <p className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-gray-500" />
-              <strong>DOB:</strong> {patient.dob} (Age: {patient.age})
-            </p>
-            <p className="flex items-center gap-2">
-              <HeartPulse className="w-4 h-4 text-gray-500" />
-              <strong>Gender:</strong> {patient.gender}
-            </p>
-            <p className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-gray-500" />
-              <strong>Contact:</strong> {patient.phone}
-            </p>
-            <p className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-gray-500" />
-              <strong>Address:</strong> {patient.address || "-"}
-            </p>
-            <p className="flex items-center gap-2">
-              <IdCard className="w-4 h-4 text-gray-500" />
-              <strong>Patient ID:</strong> {patient.patientId}
-            </p>
-            <p className="flex items-center gap-2">
-              <IdCard className="w-4 h-4 text-gray-500" />
-              <strong>Visit ID:</strong> {patient.visitId}
-            </p>
-            <p className="flex items-center gap-2">
-              <BadgeCheck className="w-4 h-4 text-gray-500" />
-              <strong>National ID:</strong> {patient.nationalId}
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-800 print:grid-cols-1 print:gap-0">
+            <div className="print:flex print:flex-wrap print:gap-x-4 print:gap-y-1">
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <User className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Name:</strong> {patient.name}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Calendar className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">DOB:</strong> {patient.dob} (Age: {patient.age})
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <HeartPulse className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Gender:</strong> {patient.gender}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Phone className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Contact:</strong> {patient.phone}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <MapPin className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Address:</strong> {patient.address || "-"}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <IdCard className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Patient ID:</strong> {patient.patientId}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <IdCard className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Visit ID:</strong> {patient.visitId}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <BadgeCheck className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-normal">National ID:</strong> {patient.nationalId}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Insurance Details */}
-        <div className="border-b border-black-300 pb-2 mb-2">
-          <h2 className="text-base font-semibold mb-1 flex items-center gap-2 text-black-600">
-            <Shield className="w-4 h-4" /> Insurance Details
+        <div className="border-b border-black-300 pb-2 mb-2 print:mb-0 print:border-b-0   print-section">
+          <h2 className="text-base font-semibold mb-1 flex items-center gap-2 text-black-600 print:flex-col print:items-start">
+             Insurance Details
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-800">
-            <p className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-gray-500" />
-              <strong>Insurance:</strong> {patient.insurance}
-            </p>
-            <p className="flex items-center gap-2">
-              <Landmark className="w-4 h-4 text-gray-500" />
-              <strong>Payer:</strong> {patient.payer}
-            </p>
-            <p className="flex items-center gap-2">
-              <IdCard className="w-4 h-4 text-gray-500" />
-              <strong>Insurance ID:</strong> {patient.insuranceId}
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-800 print:grid-cols-1 print:gap-0">
+            <div className="print:flex print:flex-wrap print:gap-x-4 print:gap-y-1">
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <FileText className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Insurance:</strong> {patient.insurance}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Landmark className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Payer:</strong> {patient.payer}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <IdCard className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Insurance ID:</strong> {patient.insuranceId}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Vitals */}
-        <div className="border-b border-black-300 pb-1">
-          <h2 className="text-base font-semibold mb-1 flex items-center gap-2 text-black-600">
-            <HeartPulse className="w-4 h-4" /> Vital Signs
+        <div className="border-b border-black-300 pb-1 print:pb-0 print:border-b-0  print-section  ">
+          <h2 className="text-base font-semibold mb-1 flex items-center gap-2 text-black-600 print:flex-col print:items-start">
+             Vital Signs
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-800">
-            <p className="flex items-center gap-2">
-              <Thermometer className="w-4 h-4 text-gray-500" />
-              <strong>Temperature:</strong> {patient.temperature || "-"} °C
-            </p>
-            <p className="flex items-center gap-2">
-              <Activity className="w-4 h-4 text-gray-500" />
-              <strong>BP:</strong> {patient.bloodPressure || "-"}
-            </p>
-            <p className="flex items-center gap-2">
-              <HeartPulse className="w-4 h-4 text-gray-500" />
-              <strong>Heart Rate:</strong> {patient.heartRate || "-"} bpm
-            </p>
-            <p className="flex items-center gap-2">
-              <Weight className="w-4 h-4 text-gray-500" />
-              <strong>Weight:</strong> {patient.weight || "-"} kg
-            </p>
-            <p className="flex items-center gap-2">
-              <Ruler className="w-4 h-4 text-gray-500" />
-              <strong>Height:</strong> {patient.height || "-"} cm
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-gray-800 print:grid-cols-1 print:gap-0">
+            <div className="print:flex print:flex-wrap print:gap-x-4 print:gap-y-1">
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Thermometer className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Temperature:</strong> {patient.temperature || "-"} °C
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Activity className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">BP:</strong> {patient.bloodPressure || "-"}
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <HeartPulse className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Heart Rate:</strong> {patient.heartRate || "-"} bpm
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Weight className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Weight:</strong> {patient.weight || "-"} kg
+              </p>
+              <p className="flex items-center gap-2 print:inline-flex print:items-center">
+                <Ruler className="w-4 h-4 text-gray-500 print:hidden" />
+                <strong className="print:font-bold">Height:</strong> {patient.height || "-"} cm
+              </p>
+            </div>
           </div>
         </div>
+
+
       </div>
 
       {/* Medical section (To be filled by doctor only) */}
