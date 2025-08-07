@@ -1,5 +1,6 @@
 import {  NextResponse } from 'next/server';
 
+
 export async function POST(request: Request) {
   try {
     const { prompt } = await request.json();
@@ -20,6 +21,7 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+
 
     const response = await fetch(
       'https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium',
