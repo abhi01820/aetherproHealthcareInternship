@@ -13,42 +13,66 @@ export default function Header() {
           Patient Name
         </div>
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
-          {patient.name || 'N/A'}
+          {patient.name ? (
+        patient.name
+          ) : (
+        <span className="text-gray-400">Anonymous</span>
+          )}
         </div>
 
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
           Gender
         </div>
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
-          {patient.gender || 'N/A'}
+          {patient.gender ? (
+        patient.gender
+          ) : (
+        <span className="text-gray-400">M/F</span>
+          )}
         </div>
 
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
           Age
         </div>
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
-          {patient.age || 'N/A'}
+          {patient.age ? (
+        patient.age
+          ) : (
+        <span className="text-gray-400">Number</span>
+          )}
         </div>
 
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
           NAT ID
         </div>
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
-           XOOC
+          {patient.nationalId ? (
+        patient.nationalId
+          ) : (
+        <span className="text-gray-400">XOOC</span>
+          )}
         </div>
 
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
           Nationality
         </div>
         <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
-          {patient.nationality || 'INDIAN'}
+          {patient.nationality ? (
+        patient.nationality
+          ) : (
+        <span className="text-gray-400">INDIAN</span>
+          )}
         </div>
 
         <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
           Insurance
         </div>
         <div className="col-span-1 flex items-center p-2">
-          {patient.insurance || 'N/A'}
+          {patient.insurance ? (
+        patient.insurance
+          ) : (
+        <span className="text-gray-400">ABC Insurance Company</span>
+          )}
         </div>
       </div>
 

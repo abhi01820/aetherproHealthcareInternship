@@ -88,13 +88,13 @@ interface EHRContextProps {
 
 // Default patient state
 const defaultPatient: Patient = {
-  name: "RAJ",
-  age: 20,
+  name: "",
+  age: 0,
   dob: "20-01-2005",
-  gender: "Male",
+  gender: "",
   phone: "123-450-2322",
   address: "hyderabad",
-  insurance: "AetherPro Healthcare",
+  insurance: "",
   payer: "AetherPro Health Inc.",
   doctor: "Dr. Priya Sharma",
   patientId: 1234,

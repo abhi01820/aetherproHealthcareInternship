@@ -34,3 +34,42 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## AI Chatbot Integration
+
+This project includes an AI-powered medical coding audit chatbot that provides recommendations based on patient data. The chatbot uses OpenAI's GPT-4 model to generate comprehensive medical coding audit reports.
+
+### Setup OpenAI API
+
+1. Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create a `.env.local` file in the root directory
+3. Add your OpenAI API key:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### Features
+
+- **Medical Coding Audit**: Analyzes patient data and provides coding recommendations
+- **NCCI Compliance**: Identifies bundling/unbundling issues
+- **Documentation Review**: Assesses completeness of medical documentation
+- **Revenue Optimization**: Suggests opportunities for improved billing
+- **Real-time Analysis**: Generates recommendations based on current patient data
+
+### Usage
+
+1. Fill in patient data in the Vitals form
+2. Click the "AI-ChatBot" button
+3. Review the generated medical coding audit report
+4. Use the "Regenerate" button for new recommendations
+
+### API Endpoints
+
+- `POST /api/openai` - Handles OpenAI API requests for medical coding audits
+
+### Security
+
+- API keys are stored securely in environment variables
+- All requests are validated and sanitized
+- Error handling prevents exposure of sensitive information

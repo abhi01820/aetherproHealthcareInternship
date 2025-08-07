@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import ICDSearchPanel from "@/components/ICDSearchPanel";
 import CPTSearchPanel from "@/components/CPTSearchPanel";
 import MedicineSearchPanel from "@/components/MedicineSearchPanel";
@@ -19,26 +19,310 @@ interface CPTInvestigationRow {
   type: string;
 }
 
+// AI Chatbot Popup Component
+interface PatientData {
+  treatmentPlan: string;
+  diagnosis: Array<{ code: string; desc: string; type: string }>;
+  physicalExam: string;
+  chiefComplaint: string;
+  assessment: string;
+  procedures: string[];
+  medications: Array<{ name: string; dosage: string; frequency: string }>;
+  temperature: string;
+  bloodPressure: string;
+  heartRate: string;
+  weight: string;
+  height: string;
+}
+
+const AIChatbotPopup = ({ 
+  isOpen, 
+  onClose, 
+  patientData 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  patientData: PatientData; 
+}) => {
+  const [recommendations, setRecommendations] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const generateDemoRecommendations = (patientInfo: {
+    treatmentPlan: string;
+    diagnosis: Array<{ code: string; desc: string }>;
+    physicalExam: string;
+    chiefComplaint: string;
+    procedures: string[];
+    medications: Array<{ name: string; dosage: string; frequency: string }>;
+    vitals: {
+      temperature: string;
+      bloodPressure: string;
+      heartRate: string;
+      weight: string;
+      height: string;
+    };
+  }) => {
+    const hasProcedures = patientInfo.procedures.length > 0;
+    const hasDiagnosis = patientInfo.diagnosis.length > 0;
+    const hasTreatmentPlan = patientInfo.treatmentPlan && patientInfo.treatmentPlan !== "Not provided";
+    const hasPhysicalExam = patientInfo.physicalExam && patientInfo.physicalExam !== "Not provided";
+    const hasChiefComplaint = patientInfo.chiefComplaint && patientInfo.chiefComplaint !== "Not provided";
+
+    return `## Medical Coding Audit Report (Demo)
+
+### CPT Code Analysis
+**Current Procedures:** ${hasProcedures ? patientInfo.procedures.join(', ') : 'None documented'}
+
+**Recommendations:**
+${hasProcedures ? 
+  '- Review procedure documentation for completeness\n- Ensure all procedures have corresponding CPT codes\n- Verify medical necessity for each procedure' :
+  '- No procedures documented. Consider adding relevant procedures based on diagnosis and treatment plan.'
+}
+
+### ICD-10 Code Validation
+**Current Diagnosis:** ${hasDiagnosis ? patientInfo.diagnosis.map((d: { code: string; desc: string }) => `${d.code}: ${d.desc}`).join(', ') : 'None documented'}
+
+**Recommendations:**
+${hasDiagnosis ?
+  '- Verify diagnosis codes match documented conditions\n- Ensure primary diagnosis supports medical necessity\n- Review for any missing secondary diagnoses' :
+  '- No diagnosis codes documented. Add appropriate ICD-10 codes based on clinical findings.'
+}
+
+### NCCI Compliance
+**Potential Issues:**
+- Check for bundled procedures that should be unbundled
+- Verify modifier usage for multiple procedures
+- Review for mutually exclusive code pairs
+
+### Documentation Compliance
+**Assessment:**
+- Treatment plan documentation: ${hasTreatmentPlan ? 'Present' : 'Missing'}
+- Physical examination: ${hasPhysicalExam ? 'Present' : 'Missing'}
+- Chief complaint: ${hasChiefComplaint ? 'Present' : 'Missing'}
+
+**Recommendations:**
+${!hasTreatmentPlan || !hasPhysicalExam || !hasChiefComplaint ?
+  '- Complete missing documentation sections\n- Ensure all required documentation elements are present\n- Verify medical necessity documentation' :
+  '- Documentation appears complete. Review for accuracy and specificity.'
+}
+
+### Revenue Optimization
+**Opportunities:**
+- Review for missed billable procedures
+- Verify appropriate code selection for maximum reimbursement
+- Consider additional diagnostic codes if supported by documentation
+
+### Action Items
+1. ${!hasDiagnosis ? 'Add appropriate ICD-10 diagnosis codes' : 'Review and validate existing diagnosis codes'}
+2. ${!hasProcedures ? 'Document relevant procedures performed' : 'Review procedure documentation for completeness'}
+3. ${!hasTreatmentPlan || !hasPhysicalExam || !hasChiefComplaint ? 'Complete missing documentation sections' : 'Review documentation for accuracy'}
+4. Address any NCCI bundling issues
+5. Implement documentation improvements
+
+### Demo Note
+This is a demonstration of the medical coding audit feature. For real AI-powered recommendations, please configure your OpenAI API key which is paid version of the app .`;
+  };
+
+  const generateRecommendations = useCallback(async () => {
+    setIsLoading(true);
+    
+         // Prepare the patient data for the AI prompt
+     const patientInfo = {
+       treatmentPlan: patientData.treatmentPlan || "Not provided",
+       diagnosis: patientData.diagnosis || [],
+       physicalExam: patientData.physicalExam || "Not provided",
+       chiefComplaint: patientData.chiefComplaint || "Not provided",
+       assessment: patientData.assessment || "Not provided",
+       procedures: patientData.procedures || [],
+       medications: patientData.medications || [],
+       vitals: {
+         temperature: patientData.temperature,
+         bloodPressure: patientData.bloodPressure,
+         heartRate: patientData.heartRate,
+         weight: patientData.weight,
+         height: patientData.height
+       }
+     };
+
+    const prompt = `Medical Coding Audit Prompt
+
+You are an AAPC-certified medical coder and compliance auditor. Review the patient chart provided below and produce an audit in the following table format.
+
+Rules:
+- Do not recommend any Office/Outpatient E/M CPT codes (99202–99215).
+- Focus on procedure-based billing for CPT.
+- Do not make the review payer-specific; ignore Medicare/Medicaid-specific coverage policies.
+- Apply NCCI (National Correct Coding Initiative) edits to identify and flag bundling or unbundling issues.
+
+Output Table Columns:
+Section – Chief Complaint, HPI, ROS, Vitals, Physical Exam, Assessment/Diagnosis, Procedures, Treatment Plan.
+Issue – Describe what is missing, incomplete, or incorrect.
+Risk – State the compliance or reimbursement risk (e.g., claim denial, downcoding, audit flag, NCCI bundling).
+Coder Recommendation – Suggest the exact fix or addition needed.
+Reason/Guideline Reference – Explain why the fix is necessary, referencing CMS, AAPC, ICD-10-CM, CPT, or NCCI guidelines.
+
+Additional Output Requirements:
+- Suggest correct ICD-10-CM and non-E/M CPT/HCPCS codes based on the documented information.
+- If a section is complete, mark "✅ Green sign" and state it meets documentation standards.
+- List potential NCCI edit conflicts for the recommended CPT codes.
+
+Patient Chart:
+Chief Complaint: ${patientInfo.chiefComplaint}
+Physical Examination: ${patientInfo.physicalExam}
+Assessment/Diagnosis: ${patientInfo.assessment || 'Not documented'}
+Treatment Plan: ${patientInfo.treatmentPlan}
+Procedures: ${patientInfo.procedures.join(', ')}
+Diagnosis Codes: ${patientInfo.diagnosis.map((d: { code: string; desc: string }) => `${d.code}: ${d.desc}`).join(', ')}
+Medications: ${patientInfo.medications.map((m: { name: string; dosage: string; frequency: string }) => `${m.name} - ${m.dosage} ${m.frequency}`).join(', ')}
+Vitals: Temperature: ${patientInfo.vitals.temperature}°C, BP: ${patientInfo.vitals.bloodPressure} mmHg, HR: ${patientInfo.vitals.heartRate} bpm, Weight: ${patientInfo.vitals.weight} kg, Height: ${patientInfo.vitals.height} cm
+
+Please provide the audit in the specified table format with all required columns and additional output requirements.`;
+
+    try {
+      // First try to call the free Hugging Face API
+      const response = await fetch('/api/huggingface', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setRecommendations(data.recommendations);
+      } else {
+        // If Hugging Face API fails, try OpenAI as backup
+        const openaiResponse = await fetch('/api/openai', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ prompt }),
+        });
+
+        if (openaiResponse.ok) {
+          const openaiData = await openaiResponse.json();
+          setRecommendations(openaiData.recommendations);
+        } else {
+          // If both APIs fail, show demo data
+          const errorData = await openaiResponse.json();
+          console.warn('Both APIs failed, showing demo data:', errorData.error);
+          
+          // Generate demo recommendations based on patient data
+          const demoRecommendations = generateDemoRecommendations(patientInfo);
+          setRecommendations(demoRecommendations);
+        }
+      }
+    } catch (error) {
+      console.error('Error generating recommendations:', error);
+      
+      // Fallback to demo data
+      const demoRecommendations = generateDemoRecommendations(patientInfo);
+      setRecommendations(demoRecommendations + '\n\n[Note: This is demo data. Configure API keys for real AI recommendations.]');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [patientData]);
+
+  useEffect(() => {
+    if (isOpen) {
+      generateRecommendations();
+    }
+  }, [isOpen, generateRecommendations]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-start justify-end z-50">
+      {/* Background overlay - click to close */}
+      <div className="absolute inset-0 bg-black bg-opacity-10" onClick={onClose}></div>
+      <div className="bg-white shadow-xl w-[30%] h-full flex flex-col border-l border-gray-200 relative z-10">
+        {/* Header */}
+        <div className="flex justify-between items-center p-3 border-b border-gray-200 bg-blue-50">
+          <h2 className="text-lg font-bold text-gray-800">AI Medical Coding Audit</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 text-xl font-bold p-1"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-3">
+          {isLoading ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-3"></div>
+                <p className="text-xs text-gray-600">Generating recommendations...</p>
+              </div>
+            </div>
+          ) : (
+            <div className="prose max-w-none">
+              <div className="bg-blue-50 border-l-4 border-blue-400 p-3 mb-3 rounded">
+                <p className="text-xs text-blue-700">
+                  <strong>Note:</strong> AI analysis based on patient data. Review with medical coding team.
+                </p>
+              </div>
+              <div className="whitespace-pre-wrap text-xs leading-relaxed">
+                {recommendations}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-gray-200 p-3 flex justify-end gap-2">
+          <button
+            onClick={onClose}
+            className="px-3 py-1.5 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
+          >
+            Close
+          </button>
+          <button
+            onClick={generateRecommendations}
+            disabled={isLoading}
+            className="px-3 py-1.5 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+          >
+            {isLoading ? 'Generating...' : 'Regenerate'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function ClinicalDesktopUI() {
   const router = useRouter();
   const { patient, setPatient } = useEHR();
   const [panelRowIndex, setPanelRowIndex] = useState<number | null>(null);
   const [cptPanelRowIndex, setCptPanelRowIndex] = useState<number | null>(null);
   const [medPanelRowIndex, setMedPanelRowIndex] = useState<number | null>(null);
+  const [isAIChatbotOpen, setIsAIChatbotOpen] = useState(false);
 
-  const [icdRows, setIcdRows] = useState<ICDRow[]>([
-    { code: "", desc: "", type: "Primary" },
-    { code: "", desc: "", type: "Secondary" },
-    ...Array.from({ length: 19 }).map(() => ({
-      code: "",
-      desc: "",
-      type: "Secondary" as const,
-    })),
-  ]);
+  const [icdRows, setIcdRows] = useState<ICDRow[]>(() => {
+    // Always start with 19 empty rows and no pre-filled ICD codes
+    return [
+      { code: "", desc: "", type: "Primary" },
+      { code: "", desc: "", type: "Secondary" },
+      ...Array.from({ length: 19 }).map(() => ({
+        code: "",
+        desc: "",
+        type: "Secondary" as const,
+      })),
+    ];
+  });
 
-  const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(
-    Array.from({ length: 7 }, () => ({ code: "", desc: "", type: "" }))
-  );
+  const [cptRows, setCptRows] = useState<CPTInvestigationRow[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vitals_cptRows');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    }
+    return Array.from({ length: 8 }, () => ({ code: "", desc: "", type: "" }));
+  });
 
   const handleCptSelect = (index: number, code: string, desc: string) => {
     const newRows = [...cptRows];
@@ -47,20 +331,25 @@ export default function ClinicalDesktopUI() {
     setCptPanelRowIndex(null);
   };
 
-  const [medRows, setMedRows] = useState(
-    [] as {
+  const [medRows, setMedRows] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vitals_medRows');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    }
+    return [] as {
       tradeName: string;
       route: string;
       granular: string;
       days: number;
       freq: string;
       remark: string;
-    }[]
-  );
+    }[];
+  });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectionMade, setSelectionMade] = useState(false);
-  const [hideSDX, setHideSDX] = useState(false);
 
   const handleICDSelect = (entry: {
     Code: string;
@@ -78,12 +367,17 @@ export default function ClinicalDesktopUI() {
     if (emptyIndex !== -1) {
       updated[emptyIndex].code = entry.Code;
       updated[emptyIndex].desc = entry.ShortDesc;
-      if (emptyIndex === 1) {
-        setHideSDX(true);
-      }
       setSelectionMade(true);
     }
-    setIcdRows(updated);
+    // Ensure 19 empty rows after filled rows
+    const filledRows = updated.filter((row) => row.code !== "" && row.desc !== "");
+    const emptyRowsCount = 19;
+    const emptyRows = Array.from({ length: emptyRowsCount }, () => ({
+      code: "",
+      desc: "",
+      type: "Secondary" as const,
+    }));
+    setIcdRows([...filledRows, ...emptyRows]);
     setPanelRowIndex(null);
   };
 
@@ -122,10 +416,124 @@ export default function ClinicalDesktopUI() {
     setPatient((prev) => ({ ...prev, diagnosis: updatedDiagnosis }));
   }, [icdRows, setPatient]);
 
-  const [chiefComplaint, setChiefComplaint] = useState("");
-  const [physicalExam, setPhysicalExam] = useState("");
-  const [assessment, setAssessment] = useState("");
-  const [treatmentPlan, setTreatmentPlan] = useState("");
+  const [chiefComplaint, setChiefComplaint] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vitals_chiefComplaint');
+      return saved || "";
+    }
+    return "";
+  });
+  const [physicalExam, setPhysicalExam] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vitals_physicalExam');
+      return saved || "";
+    }
+    return "";
+  });
+  const [assessment, setAssessment] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vitals_assessment');
+      return saved || "";
+    }
+    return "";
+  });
+  const [treatmentPlan, setTreatmentPlan] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vitals_treatmentPlan');
+      return saved || "";
+    }
+    return "";
+  });
+  const [isEditing, setIsEditing] = useState(false);
+
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('vitals_chiefComplaint', chiefComplaint);
+  }, [chiefComplaint]);
+
+  useEffect(() => {
+    localStorage.setItem('vitals_physicalExam', physicalExam);
+  }, [physicalExam]);
+
+  useEffect(() => {
+    localStorage.setItem('vitals_assessment', assessment);
+  }, [assessment]);
+
+  useEffect(() => {
+    localStorage.setItem('vitals_treatmentPlan', treatmentPlan);
+  }, [treatmentPlan]);
+
+  useEffect(() => {
+    localStorage.setItem('vitals_icdRows', JSON.stringify(icdRows));
+  }, [icdRows]);
+
+  useEffect(() => {
+    localStorage.setItem('vitals_cptRows', JSON.stringify(cptRows));
+  }, [cptRows]);
+
+  useEffect(() => {
+    localStorage.setItem('vitals_medRows', JSON.stringify(medRows));
+  }, [medRows]);
+
+  // Load data from EHR context on component mount
+  useEffect(() => {
+    if (patient.chiefComplaint && !chiefComplaint) {
+      setChiefComplaint(patient.chiefComplaint);
+    }
+    if (patient.physicalExam && !physicalExam) {
+      setPhysicalExam(patient.physicalExam);
+    }
+    if (patient.assessment && !assessment) {
+      setAssessment(patient.assessment);
+    }
+    if (patient.treatmentPlan && !treatmentPlan) {
+      setTreatmentPlan(patient.treatmentPlan);
+    }
+    // Do not pre-fill ICD rows from patient diagnosis to keep table initially empty
+  }, [patient, chiefComplaint, physicalExam, assessment, treatmentPlan, icdRows]);
+
+  const updatePhysicalExamWithVitals = (updatedPatient: typeof patient) => {
+    const vitalsText = [];
+    
+    if (updatedPatient.temperature) {
+      vitalsText.push(`Temperature: ${updatedPatient.temperature}°C`);
+    }
+    if (updatedPatient.bloodPressure) {
+      vitalsText.push(`Blood Pressure: ${updatedPatient.bloodPressure} mmHg`);
+    }
+    if (updatedPatient.heartRate) {
+      vitalsText.push(`Heart Rate: ${updatedPatient.heartRate} bpm`);
+    }
+    if (updatedPatient.weight) {
+      vitalsText.push(`Weight: ${updatedPatient.weight} kg`);
+    }
+    if (updatedPatient.height) {
+      vitalsText.push(`Height: ${updatedPatient.height} cm`);
+    }
+
+    if (vitalsText.length > 0) {
+      const vitalsString = vitalsText.join(", ");
+      
+      // Clean up the physical exam text by removing any existing vitals
+      let cleanedExam = physicalExam;
+      
+      // Remove any existing vitals line
+      const vitalsLines = cleanedExam.split('\n').filter(line => 
+        !line.trim().startsWith('Vitals:') && 
+        !line.includes('Temperature:') && 
+        !line.includes('Blood Pressure:') && 
+        !line.includes('Heart Rate:') && 
+        !line.includes('Weight:') && 
+        !line.includes('Height:')
+      );
+      
+      cleanedExam = vitalsLines.join('\n').trim();
+      
+      // Add the new vitals
+      const separator = cleanedExam ? "\n\n" : "";
+      setPhysicalExam(cleanedExam + separator + `Vitals: ${vitalsString}`);
+    }
+  };
 
   const handleGenerateEHR = () => {
     const updatedPatient = {
@@ -134,11 +542,11 @@ export default function ClinicalDesktopUI() {
       cptRows: cptRows
         .filter((r) => r.code && r.desc)
         .map((r) => ({ ...r, type: r.type || "Primary" })),
-      medications: medRows.map((med) => ({
-        name: med.tradeName,
-        dosage: `${med.days}`,
-        frequency: med.freq,
-      })),
+             medications: medRows.map((med: { tradeName: string; days: number; freq: string; }) => ({
+         name: med.tradeName,
+         dosage: `${med.days}`,
+         frequency: med.freq,
+       })),
       chiefComplaint,
       physicalExam,
       assessment,
@@ -154,8 +562,88 @@ export default function ClinicalDesktopUI() {
     }, 300); // increase delay slightly
   };
 
+  const handleNewPatient = () => {
+    // Reset all form states to initial values while preserving required fields
+    setPatient(prev => ({
+      ...prev,
+      temperature: "",
+      bloodPressure: "",
+      heartRate: "",
+      weight: "",
+      height: "",
+      diagnosis: [],
+      procedures: [],
+      medications: [],
+      chiefComplaint: "",
+      physicalExam: "",
+      assessment: "",
+      treatmentPlan: "",
+    }));
+    
+    // Reset ICD rows
+    setIcdRows([
+      { code: "", desc: "", type: "Primary" },
+      { code: "", desc: "", type: "Secondary" },
+      ...Array.from({ length: 19 }).map(() => ({
+        code: "",
+        desc: "",
+        type: "Secondary" as const,
+      })),
+    ]);
+    
+    // Reset CPT rows
+    setCptRows(
+      Array.from({ length: 7 }, () => ({ code: "", desc: "", type: "" }))
+    );
+    
+    // Reset medicine rows
+    setMedRows([]);
+    
+    // Reset clinical notes
+    setChiefComplaint("");
+    setPhysicalExam("");
+    setAssessment("");
+    setTreatmentPlan("");
+    
+    // Clear localStorage
+    localStorage.removeItem('vitals_chiefComplaint');
+    localStorage.removeItem('vitals_physicalExam');
+    localStorage.removeItem('vitals_assessment');
+    localStorage.removeItem('vitals_treatmentPlan');
+    localStorage.removeItem('vitals_icdRows');
+    localStorage.removeItem('vitals_cptRows');
+    localStorage.removeItem('vitals_medRows');
+    
+    // Reset editing state
+    setIsEditing(false);
+  };
+
   return (
     <div className="w-full border-2 border-black relative text-sm">
+      {/* AI Chatbot Popup */}
+             <AIChatbotPopup
+         isOpen={isAIChatbotOpen}
+         onClose={() => setIsAIChatbotOpen(false)}
+         patientData={{
+           treatmentPlan,
+           diagnosis: icdRows.filter(row => row.code && row.desc),
+           physicalExam,
+           chiefComplaint,
+           assessment,
+           procedures: cptRows.filter(row => row.code && row.desc).map(row => row.desc),
+                       medications: medRows.map((med: { tradeName: string; days: number; freq: string }) => ({
+              name: med.tradeName,
+              dosage: med.days.toString(),
+              frequency: med.freq
+            })),
+           temperature: patient.temperature,
+           bloodPressure: patient.bloodPressure,
+           heartRate: patient.heartRate,
+           weight: patient.weight,
+           height: patient.height
+         }}
+       />
+
       {/* Panels */}
       {panelRowIndex !== null && (
         <ICDSearchPanel
@@ -185,11 +673,91 @@ export default function ClinicalDesktopUI() {
       <div className="flex flex-col md:flex-row font-semibold">
         <div className="md:w-[80%] bg-cyan-200 px-2 py-1 flex flex-wrap items-center gap-4">
           <span className="font-bold">Vitals:</span>
-          <span>Temp: {patient.temperature || "N/A"}°C</span>
-          <span>BP: {patient.bloodPressure || "N/A"} mmHg</span>
-          <span>HR: {patient.heartRate || "N/A"} bpm</span>
-          <span>Weight: {patient.weight || "N/A"} kg</span>
-          <span>Height: {patient.height || "N/A"} cm</span>
+          <span className="flex items-center gap-1">
+            Temp: 
+            <input
+              type="text"
+              value={patient.temperature || ""}
+              onChange={(e) => {
+                const newTemp = e.target.value;
+                setPatient(prev => ({ ...prev, temperature: newTemp }));
+                updatePhysicalExamWithVitals({
+                  ...patient,
+                  temperature: newTemp
+                });
+              }}
+              placeholder="N/A"
+              className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
+            />°C
+          </span>
+          <span className="flex items-center gap-1">
+            BP: 
+            <input
+              type="text"
+              value={patient.bloodPressure || ""}
+              onChange={(e) => {
+                const newBP = e.target.value;
+                setPatient(prev => ({ ...prev, bloodPressure: newBP }));
+                updatePhysicalExamWithVitals({
+                  ...patient,
+                  bloodPressure: newBP
+                });
+              }}
+              placeholder="N/A"
+              className="w-20 px-1 border border-gray-400 rounded bg-white text-sm"
+            /> mmHg
+          </span>
+          <span className="flex items-center gap-1">
+            HR: 
+            <input
+              type="text"
+              value={patient.heartRate || ""}
+              onChange={(e) => {
+                const newHR = e.target.value;
+                setPatient(prev => ({ ...prev, heartRate: newHR }));
+                updatePhysicalExamWithVitals({
+                  ...patient,
+                  heartRate: newHR
+                });
+              }}
+              placeholder="N/A"
+              className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
+            /> bpm
+          </span>
+          <span className="flex items-center gap-1">
+            Weight: 
+            <input
+              type="text"
+              value={patient.weight || ""}
+              onChange={(e) => {
+                const newWeight = e.target.value;
+                setPatient(prev => ({ ...prev, weight: newWeight }));
+                updatePhysicalExamWithVitals({
+                  ...patient,
+                  weight: newWeight
+                });
+              }}
+              placeholder="N/A"
+              className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
+            /> kg
+          </span>
+          <span className="flex items-center gap-1">
+            Height: 
+            <input
+              type="text"
+              value={patient.height || ""}
+              onChange={(e) => {
+                const newHeight = e.target.value;
+                setPatient(prev => ({ ...prev, height: newHeight }));
+                updatePhysicalExamWithVitals({
+                  ...patient,
+                  height: newHeight
+                });
+              }}
+              placeholder="N/A"
+              className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
+            /> cm
+          </span>
         </div>
 
         <div className="md:w-[10%] bg-cyan-200 border-t md:border-r md:border-t-0 border-black flex items-center justify-center text-center"></div>
@@ -208,7 +776,8 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={chiefComplaint}
                 onChange={(e) => setChiefComplaint(e.target.value)}
-                className="w-full border-x border-b border-gray-300 p-2 italic text-black-600 bg-white min-h-[124px] resize-none focus:outline-none"
+                disabled={!isEditing}
+                className={`w-full border-x border-b border-gray-300 p-2 italic text-black-600 min-h-[124px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
                 placeholder="Enter chief complaint..."
               />
 
@@ -218,8 +787,8 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={physicalExam}
                 onChange={(e) => setPhysicalExam(e.target.value)}
-                className="w-full border border-gray-300 p-2 italic text-black-600 bg-white
-           min-h-[90px] resize-none focus:outline-none"
+                disabled={!isEditing}
+                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[90px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
                 placeholder="Enter Physical examination..."
               />
               <div className="text-center font-bold border border-gray-300 py-1.5 bg-yellow-100">
@@ -228,8 +797,8 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={assessment}
                 onChange={(e) => setAssessment(e.target.value)}
-                className="w-full border border-gray-300 p-2 bg-white italic text-black-600 
-           min-h-[90px] resize-none focus:outline-none"
+                disabled={!isEditing}
+                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[90px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
                 placeholder="Enter Assessment/Diagnosis..."
               />
               <div className="text-center font-bold border border-gray-300 py-1.5 bg-yellow-100">
@@ -238,8 +807,8 @@ export default function ClinicalDesktopUI() {
               <textarea
                 value={treatmentPlan}
                 onChange={(e) => setTreatmentPlan(e.target.value)}
-                className="w-full border border-gray-300 p-2 italic bg-white text-black-600 
-           min-h-[90px] resize-none focus:outline-none"
+                disabled={!isEditing}
+                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[90px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
                 placeholder="Enter Treatment Plan..."
               />
             </div>
@@ -264,47 +833,22 @@ export default function ClinicalDesktopUI() {
 
               {/* ICD Rows */}
               <div className="max-h-[254px] overflow-y-auto scrollbar-hide">
-                {(() => {
-                  let pdxShown = false;
-                  let sdxShown = false;
+                {icdRows.map((row, idx) => (
+                  <div
+                    key={idx}
+                    className="grid grid-cols-[100px_1.5fr] text-center bg-white border-l border-b border-gray-100 items-center"
+                  >
+                    {/* Column 1: ICD Code */}
+                    <div className="p-1 text-black-500 min-h-[32px] flex items-center justify-center">
+                      {row.code || ""}
+                    </div>
 
-                  return icdRows.map((row, idx) => {
-                    let displayCode = row.code;
-
-                    if (!row.code) {
-                      if (row.type === "Primary" && !pdxShown) {
-                        displayCode = "PDX";
-                        pdxShown = true;
-                      } else if (
-                        row.type === "Secondary" &&
-                        !sdxShown &&
-                        !hideSDX
-                      ) {
-                        displayCode = "SDX";
-                        sdxShown = true;
-                      } else {
-                        displayCode = ""; // Other empty rows show nothing
-                      }
-                    }
-
-                    return (
-                      <div
-                        key={idx}
-                        className="grid grid-cols-[100px_1.5fr] text-center bg-white border-l border-b border-gray-100 items-center"
-                      >
-                        {/* Column 1: ICD Code / PDX / SDX */}
-                        <div className="p-1 text-black-500 min-h-[32px] flex items-center justify-center">
-                          {displayCode}
-                        </div>
-
-                        {/* Column 2: ICD desc */}
-                        <div className="p-1 border-l border-gray-100 min-h-[32px] flex items-center justify-start px-3 text-gray-800">
-                          {row.desc || ""}
-                        </div>
-                      </div>
-                    );
-                  });
-                })()}
+                    {/* Column 2: ICD desc */}
+                    <div className="p-1 border-l border-gray-100 min-h-[32px] flex items-center justify-start px-3 text-gray-800">
+                      {row.desc || ""}
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Investigations Header */}
@@ -446,23 +990,29 @@ export default function ClinicalDesktopUI() {
         <div className="md:w-[20%] flex flex-col md:flex-row">
           <div className="w-full  bg-amber-50 p-8 text-base">
             <div className="flex flex-col gap-2">
-              <button className="bg-gray-800 cursor-pointer text-white py-4 rounded">
-                Medical Coding
+              <button 
+                className="bg-gray-800 cursor-pointer text-white py-4 rounded"
+                onClick={handleNewPatient}
+              >
+                New Patient 
               </button>
-              <button className="bg-blue-500 cursor-pointer text-white py-4 rounded">
-                AI - Advisory
-              </button>
-              <button className="bg-green-500 cursor-pointer text-white py-4 rounded">
-                Suggestions
-              </button>
-              <button className="bg-purple-400 cursor-pointer text-white py-4 rounded">
-                Claims Database
+              <button 
+                className="bg-blue-500 cursor-pointer text-white py-4 rounded"
+                onClick={() => setIsEditing(!isEditing)}
+              >
+                {isEditing ? 'Save' : 'Edit'}
               </button>
               <button
                 className="bg-black text-white py-4 cursor-pointer px-4 rounded"
                 onClick={handleGenerateEHR}
               >
                 Generate E-HR
+              </button>
+              <button 
+                className="bg-purple-400 cursor-pointer text-white py-4 rounded hover:bg-purple-500"
+                onClick={() => setIsAIChatbotOpen(true)}
+              >
+                AI-ChatBot 
               </button>
             </div>
           </div>
