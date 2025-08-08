@@ -798,7 +798,7 @@ export default function ClinicalDesktopUI() {
                 value={assessment}
                 onChange={(e) => setAssessment(e.target.value)}
                 disabled={!isEditing}
-                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[90px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
+                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[110px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
                 placeholder="Enter Assessment/Diagnosis..."
               />
               <div className="text-center font-bold border border-gray-300 py-1.5 bg-yellow-100">
@@ -808,7 +808,7 @@ export default function ClinicalDesktopUI() {
                 value={treatmentPlan}
                 onChange={(e) => setTreatmentPlan(e.target.value)}
                 disabled={!isEditing}
-                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[90px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
+                className={`w-full border border-gray-300 p-2 italic text-black-600 min-h-[110px] resize-none focus:outline-none ${isEditing ? 'bg-white' : 'bg-gray-100 cursor-not-allowed'}`}
                 placeholder="Enter Treatment Plan..."
               />
             </div>
@@ -820,9 +820,13 @@ export default function ClinicalDesktopUI() {
                 <div className="p-1  flex items-center justify-center">
                   <div className="flex items-center gap-2 px-10 py-0.5 border border-gray-300 rounded-full bg-pink-100">
                     <span className="font-semibold">ICD Desc</span>
-                    <button
+                      <button
                       className="bg-blue-200 hover:bg-blue-300 rounded-full px-1 cursor-pointer"
-                      onClick={() => setPanelRowIndex(-1)}
+                      onClick={() => {
+                        if (isEditing) {
+                          setPanelRowIndex(-1);
+                        }
+                      }}
                       title="Add ICD"
                     >
                       🔍
@@ -836,7 +840,7 @@ export default function ClinicalDesktopUI() {
                 {icdRows.map((row, idx) => (
                   <div
                     key={idx}
-                    className="grid grid-cols-[100px_1.5fr] text-center bg-white border-l border-b border-gray-100 items-center"
+                    className="grid grid-cols-[100px_1.5fr] text-center bg-white border-l border-b border-gray-100 items-center group relative"
                   >
                     {/* Column 1: ICD Code */}
                     <div className="p-1 text-black-500 min-h-[32px] flex items-center justify-center">
@@ -847,6 +851,28 @@ export default function ClinicalDesktopUI() {
                     <div className="p-1 border-l border-gray-100 min-h-[32px] flex items-center justify-start px-3 text-gray-800">
                       {row.desc || ""}
                     </div>
+
+                    {/* Delete button */}
+                      {isEditing && (
+                        <button
+                          className="absolute right-1 top-1 text-red-600 hover:text-red-800 p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          title="Delete ICD"
+                          onClick={() => {
+                            const updated = [...icdRows];
+                            updated.splice(idx, 1);
+                            // Add empty rows to maintain 19 rows
+                            while (updated.length < 19) {
+                              updated.push({ code: "", desc: "", type: "Secondary" });
+                            }
+                            setIcdRows(updated);
+                          }}
+                          style={{ fontSize: '14px', lineHeight: '1', width: '20px', height: '20px' }}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      )}
                   </div>
                 ))}
               </div>
@@ -862,12 +888,14 @@ export default function ClinicalDesktopUI() {
                       <button
                         className="bg-blue-200 hover:bg-blue-300 rounded-full px-1 cursor-pointer"
                         onClick={() => {
-                          const emptyIndex = cptRows.findIndex(
-                            (row) => row.code === "" && row.desc === ""
-                          );
-                          if (emptyIndex !== -1)
-                            setCptPanelRowIndex(emptyIndex);
-                          else alert("No empty row available!");
+                          if (isEditing) {
+                            const emptyIndex = cptRows.findIndex(
+                              (row) => row.code === "" && row.desc === ""
+                            );
+                            if (emptyIndex !== -1)
+                              setCptPanelRowIndex(emptyIndex);
+                            else alert("No empty row available!");
+                          }
                         }}
                         title="Add CPT"
                       >
@@ -879,42 +907,53 @@ export default function ClinicalDesktopUI() {
                   <div className="p-1 border-l border-gray-300">Qty</div>
                 </div>
 
-                {cptRows.map((row, i) => (
-                  <div
-                    key={i}
-                    className="grid grid-cols-[100px_1fr_60px] text-center bg-white border-l border-b border-gray-100 items-center"
-                  >
-                    <div className="p-1 border-r border-gray-100 text-red-600 truncate">
-                      {row.code || "-"}
+                <div className="max-h-[254px] overflow-y-auto scrollbar-hide">
+                  {cptRows.map((row, i) => (
+                    <div
+                      key={i}
+                      className="grid grid-cols-[100px_1fr_60px] text-center bg-white border-l border-b border-gray-100 items-center group relative"
+                    >
+                      <div className="p-1 border-r border-gray-100 text-red-600 truncate">
+                        {row.code || "-"}
+                      </div>
+                      <div className="p-1 border-r border-gray-100 truncate flex justify-between items-center gap-1">
+                        <span className="w-full text-center">
+                          {row.desc || "-"}
+                        </span>
+
+                        {/* Delete button */}
+                        {isEditing && row.code && (
+                          <button
+                            className="absolute right-1 top-1 text-red-600 hover:text-red-800 p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={() => {
+                              const updated = [...cptRows];
+                              updated.splice(i, 1);
+                              // Add empty rows to maintain 8 rows
+                              while (updated.length < 8) {
+                                updated.push({ code: "", desc: "", type: "" });
+                              }
+                              setCptRows(updated);
+                            }}
+                            title="Delete CPT"
+                            style={{ fontSize: '14px', lineHeight: '1', width: '20px', height: '20px' }}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                      <div className="p-1 border-l border-gray-100">
+                        <input
+                          type="number"
+                          min={1}
+                          defaultValue={1}
+                          className="w-full text-center outline-none"
+                        />
+                      </div>
                     </div>
-                    <div className="p-1 border-r border-gray-100 truncate flex justify-between items-center gap-1">
-                      <span className="w-full text-center">
-                        {row.desc || "-"}
-                      </span>
-                      {row.code && (
-                        <button
-                          className="text-red-500 cursor-pointer font-semibold"
-                          onClick={() => {
-                            const updated = [...cptRows];
-                            updated[i] = { code: "", desc: "", type: "" };
-                            setCptRows(updated);
-                          }}
-                          title="Remove CPT"
-                        >
-                          ✕
-                        </button>
-                      )}
-                    </div>
-                    <div className="p-1 border-l border-gray-100">
-                      <input
-                        type="number"
-                        min={1}
-                        defaultValue={1}
-                        className="w-full text-center outline-none"
-                      />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
