@@ -24,9 +24,9 @@ export async function GET() {
       );
     }
 
-    // Test the API with a simple request
+    // Test the API with a simple request using the improved model
     const response = await fetch(
-      'https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium',
+      'https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill',
       {
         method: 'POST',
         headers: {

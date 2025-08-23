@@ -23,8 +23,9 @@ export async function POST(request: Request) {
     }
 
 
+    // Using a more reliable and faster model for medical coding
     const response = await fetch(
-      'https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium',
+      'https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill',
       {
         method: 'POST',
         headers: {
@@ -34,19 +35,30 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           inputs: `You are an AAPC-certified medical coder. ${prompt}`,
           parameters: {
-            max_length: 1000,
+            max_length: 512,
             temperature: 0.7,
             do_sample: true,
+            top_p: 0.9,
           },
         }),
       }
     );
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Hugging Face API error:', errorData);
+      const errorText = await response.text();
+      console.error('Hugging Face API error:', errorText);
+      
+      // Handle different error formats
+      let errorMessage = 'Failed to generate recommendations';
+      try {
+        const errorData = JSON.parse(errorText);
+        errorMessage = errorData.error || errorMessage;
+      } catch {
+        errorMessage = errorText || errorMessage;
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to generate recommendations' },
+        { error: errorMessage },
         { status: response.status }
       );
     }

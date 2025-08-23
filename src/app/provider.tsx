@@ -3,40 +3,36 @@
 import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { UserDetailContext } from '../../context/UserDetailContext';
-
-export type UsersDetail = {
-  name: string;
-  email: string;
-  credits: number;
-};
+import { UserDetailContext, UsersDetail } from '../../context/UserDetailContext';
 
 function Provider({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const [userDetail, setUserDetail] = useState<UsersDetail | null>(null);
 
   useEffect(() => {
-    if (user) {
+    if (user && isLoaded) {
       CreateNewUser();
     }
-  }, [user]);
+  }, [user, isLoaded]);
 
   const CreateNewUser = async () => {
-    const result = await axios.post('/api/users');
-    console.log(result.data);
-    setUserDetail(result.data);
+    try {
+      const result = await axios.post('/api/users');
+      console.log(result.data);
+      setUserDetail(result.data);
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
   };
 
   return (
-    <div>
-      <UserDetailContext.Provider value={{ userDetail, setUserDetail }}>
-        {children}
-      </UserDetailContext.Provider>
-    </div>
+    <UserDetailContext.Provider value={{ userDetail, setUserDetail }}>
+      {children}
+    </UserDetailContext.Provider>
   );
 }
 

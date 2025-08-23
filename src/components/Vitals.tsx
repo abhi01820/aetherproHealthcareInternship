@@ -235,8 +235,7 @@ Please provide the audit in the specified table format with all required columns
 
   return (
     <div className="fixed inset-0 flex items-start justify-end z-50">
-      {/* Background overlay - click to close */}
-      <div className="absolute inset-0 bg-black bg-opacity-10" onClick={onClose}></div>
+      {/* No background overlay - direct chatbot panel */}
       <div className="bg-white shadow-xl w-[30%] h-full flex flex-col border-l border-gray-200 relative z-10">
         {/* Header */}
         <div className="flex justify-between items-center p-3 border-b border-gray-200 bg-blue-50">
@@ -344,7 +343,6 @@ export default function ClinicalDesktopUI() {
       granular: string;
       days: number;
       freq: string;
-      remark: string;
     }[];
   });
 
@@ -388,7 +386,6 @@ export default function ClinicalDesktopUI() {
     PACKAGE_PRICE: string;
     days?: number;
     freq?: string;
-    remark?: string;
   }) => {
     setMedRows([
       ...medRows,
@@ -398,7 +395,6 @@ export default function ClinicalDesktopUI() {
         granular: entry.GRANULAR_UNIT,
         days: entry.days ?? 5,
         freq: entry.freq ?? "Once daily",
-        remark: entry.remark ?? "N/A",
       },
     ]);
     setMedPanelRowIndex(null);
@@ -929,7 +925,7 @@ export default function ClinicalDesktopUI() {
                               const updated = [...cptRows];
                               updated.splice(i, 1);
                               // Add empty rows to maintain 8 rows
-                              while (updated.length < 8) {
+                              while (updated.length < 9) {
                                 updated.push({ code: "", desc: "", type: "" });
                               }
                               setCptRows(updated);
@@ -997,7 +993,7 @@ export default function ClinicalDesktopUI() {
                 <tbody>
                   {Array.from({ length: Math.max(3, medRows.length) }).map(
                     (_, i) => (
-                      <tr key={i}>
+                      <tr key={i} className="group relative">
                         <td className="border border-gray-300 bg-white px-2 py-1">
                           {medRows[i]?.tradeName || <>&nbsp;</>}
                         </td>
@@ -1008,13 +1004,90 @@ export default function ClinicalDesktopUI() {
                           {medRows[i]?.granular || <>&nbsp;</>}
                         </td>
                         <td className="border border-gray-300 bg-white px-2 py-1">
-                          {medRows[i]?.days || <>&nbsp;</>}
+                          <div className="flex items-center justify-center gap-1">
+                            <button
+                              type="button"
+                              className="w-5 h-5 bg-blue-500 text-white rounded-full text-xs hover:bg-blue-600 disabled:opacity-50"
+                              onClick={() => {
+                                if (isEditing) {
+                                  const newRows = [...medRows];
+                                  newRows[i] = { ...newRows[i], days: Math.max(1, (newRows[i]?.days || 1) - 1) };
+                                  setMedRows(newRows);
+                                }
+                              }}
+                              disabled={!isEditing || (medRows[i]?.days || 1) <= 1}
+                            >
+                              -
+                            </button>
+                            <input
+                              type="number"
+                              min="1"
+                              max="365"
+                              value={medRows[i]?.days || 1}
+                              onChange={(e) => {
+                                if (isEditing) {
+                                  const newRows = [...medRows];
+                                  newRows[i] = { ...newRows[i], days: Math.max(1, parseInt(e.target.value) || 1) };
+                                  setMedRows(newRows);
+                                }
+                              }}
+                              className="w-12 text-center border border-gray-300 rounded bg-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                              disabled={!isEditing}
+                            />
+                            <button
+                              type="button"
+                              className="w-5 h-5 bg-blue-500 text-white rounded-full text-xs hover:bg-blue-600 disabled:opacity-50"
+                              onClick={() => {
+                                if (isEditing) {
+                                  const newRows = [...medRows];
+                                  newRows[i] = { ...newRows[i], days: Math.min(365, (newRows[i]?.days || 1) + 1) };
+                                  setMedRows(newRows);
+                                }
+                              }}
+                              disabled={!isEditing}
+                            >
+                              +
+                            </button>
+                          </div>
                         </td>
                         <td className="border border-gray-300 bg-white px-2 py-1">
-                          {medRows[i]?.freq || <>&nbsp;</>}
+                          {medRows[i] ? (
+                            <select
+                              value={medRows[i].freq || "Once daily"}
+                              onChange={(e) => {
+                                const newRows = [...medRows];
+                                newRows[i] = { ...newRows[i], freq: e.target.value };
+                                setMedRows(newRows);
+                              }}
+                              className="w-full px-1 py-0.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            >
+                              <option value="Once daily">Once daily</option>
+                              <option value="Twice daily">Twice daily</option>
+                              <option value="Thrice daily">Thrice daily</option>
+                            </select>
+                          ) : (
+                            <>&nbsp;</>
+                          )}
                         </td>
-                        <td className="border border-gray-300 bg-white px-2 py-1">
+                        <td className="border border-gray-300 bg-white px-2 py-1 relative">
                           {medRows[i]?.remark || <>&nbsp;</>}
+                          
+                          {/* Delete button - appears on hover when editing */}
+                          {isEditing && medRows[i] && (
+                            <button
+                              className="absolute right-1 top-1/2 -translate-y-1/2 text-red-600 hover:text-red-800 p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white rounded-full shadow-md hover:shadow-lg"
+                              title="Delete Medicine"
+                              onClick={() => {
+                                const newRows = [...medRows];
+                                newRows.splice(i, 1);
+                                setMedRows(newRows);
+                              }}
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                          )}
                         </td>
                       </tr>
                     )
@@ -1060,3 +1133,6 @@ export default function ClinicalDesktopUI() {
     </div>
   );
 }
+
+
+
