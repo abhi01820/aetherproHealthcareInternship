@@ -35,20 +35,37 @@ function Chatbot() {
   }, [isGenerating, messages]);
 
   const sendMessage = async (userMessage: string) => {
-    const newMessages = [...messages, { role: 'user', content: userMessage }];
+    const newMessages: {role: string, content: string}[] = [...messages, { role: 'user', content: userMessage }];
     setMessages(newMessages);
+    setIsGenerating(true);
     
     try {
-      const res = await fetch('/api/test-openrouter');
+      const res = await fetch('/api/test-openrouter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userMessage }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        const errorMessage = { role: 'assistant' as const, content: `Error: ${errorData.error || 'Something went wrong.'}` };
+        setMessages(prev => [...prev, errorMessage]);
+        return;
+      }
+
       const data = await res.json();
       
       const assistantMessage = { role: 'assistant', content: data.reply };
-      setMessages([...newMessages, assistantMessage]);
-      setIsGenerating(true);
+      setMessages(prev => [...prev, assistantMessage]);
       
     } catch (error) {
       console.error('Error sending message:', error);
-      setIsTyping(false);
+      const errorMessage = { role: 'assistant' as const, content: 'Error: Could not connect to the server.' };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsGenerating(false);
     }
   };
 

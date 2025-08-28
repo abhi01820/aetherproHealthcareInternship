@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function POST(req: Request) {
   try {
     const apiKey = process.env.OPENROUTER_API_KEY;
     
@@ -13,6 +13,8 @@ export async function GET() {
         { status: 500 }
       );
     }
+
+    const { message } = await req.json();
 
     // Test the API with a simple request using Google Gemini 2.0 Flash
     const response = await fetch(
@@ -29,11 +31,15 @@ export async function GET() {
           model: 'google/gemini-2.0-flash-exp:free',
           messages: [
             {
+              role: 'system',
+              content: 'You are a helpful and empathetic medical assistant. Be caring and friendly in your responses.'
+            },
+            {
               role: 'user',
-              content: 'Hello! Can you help me with medical coding recommendations?'
+              content: message
             }
           ],
-          max_tokens: 100,
+          max_tokens: 250,
           temperature: 0.7,
         }),
       }

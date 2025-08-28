@@ -8,11 +8,11 @@ export default function Header() {
   return (
     <div className="w-full font-sans">
       {/* Desktop View */}
-      <div className="hidden md:grid grid-cols-12 bg-sky-200 overflow-x-auto border-2 border-gray-800">
-        <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
+      <div className="hidden md:grid grid-cols-12 bg-cyan-200 overflow-x-auto border-2 border-gray-800">
+        <div className="col-span-1 flex items-center justify-start py-1 border-r-2 border-gray-800 font-bold text-sm">
           Patient Name
         </div>
-        <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
+        <div className="col-span-1 flex items-center py-1 border-r-2 border-gray-800">
           {patient.name ? (
         patient.name
           ) : (
@@ -20,10 +20,10 @@ export default function Header() {
           )}
         </div>
 
-        <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
+        <div className="col-span-1 flex items-center justify-start py-1 border-r-2 border-gray-800 font-bold text-sm">
           Gender
         </div>
-        <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
+        <div className="col-span-1 flex items-center py-1 border-r-2 border-gray-800">
           {patient.gender ? (
         patient.gender
           ) : (
@@ -31,10 +31,10 @@ export default function Header() {
           )}
         </div>
 
-        <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
+        <div className="col-span-1 flex items-center justify-start py-1 border-r-2 border-gray-800 font-bold text-sm">
           Age
         </div>
-        <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
+        <div className="col-span-1 flex items-center py-1 border-r-2 border-gray-800">
           {patient.age ? (
         patient.age
           ) : (
@@ -42,10 +42,10 @@ export default function Header() {
           )}
         </div>
 
-        <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
+        <div className="col-span-1 flex items-center justify-start py-1 border-r-2 border-gray-800 font-bold text-sm">
           NAT ID
         </div>
-        <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
+        <div className="col-span-1 flex items-center py-1 border-r-2 border-gray-800">
           {patient.nationalId ? (
         patient.nationalId
           ) : (
@@ -53,10 +53,10 @@ export default function Header() {
           )}
         </div>
 
-        <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
+        <div className="col-span-1 flex items-center justify-start py-1 border-r-2 border-gray-800 font-bold text-sm">
           Nationality
         </div>
-        <div className="col-span-1 flex items-center p-2 border-r-2 border-gray-800">
+        <div className="col-span-1 flex items-center py-1 border-r-2 border-gray-800">
           {patient.nationality ? (
         patient.nationality
           ) : (
@@ -64,10 +64,10 @@ export default function Header() {
           )}
         </div>
 
-        <div className="col-span-1 flex items-center justify-start p-2 border-r-2 border-gray-800 font-bold text-sm">
+        <div className="col-span-1 flex items-center justify-start py-1 border-r-2 border-gray-800 font-bold text-sm">
           Insurance
         </div>
-        <div className="col-span-1 flex items-center p-2">
+        <div className="col-span-1 flex items-center py-1">
           {patient.insurance ? (
         patient.insurance
           ) : (

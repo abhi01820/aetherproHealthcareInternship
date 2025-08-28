@@ -464,18 +464,30 @@ const EHRReport: React.FC = () => {
               onChange={(e) => setLicense(e.target.value)}
             />
             <div className="flex justify-end gap-2">
-              <button
-                onClick={() => setShowSignatureModal(false)}
-                className="px-4 py-1 border rounded"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleDoctorSign}
-                className="px-4 py-1 bg-blue-600 text-white rounded"
-              >
-                Apply
-              </button>
+                <button
+                  onClick={() => setShowSignatureModal(false)}
+                  className="px-4 py-1 border rounded"
+                >
+                  Close
+                </button>
+                <input
+                  type="text"
+                  placeholder="Type a message..."
+                  className="px-2 py-1 border rounded w-1/2"
+                  // Add state and handler for chat input as needed
+                />
+                <button
+                  className="px-4 py-1 bg-blue-600 text-white rounded"
+                  // Add onClick handler for sending chat message
+                >
+                  Send
+                </button>
+                <button
+                  onClick={handleDoctorSign}
+                  className="px-4 py-1 bg-blue-600 text-white rounded"
+                >
+                  Apply
+                </button>
             </div>
           </div>
         </div>

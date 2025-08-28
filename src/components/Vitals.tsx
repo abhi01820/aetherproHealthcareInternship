@@ -38,14 +38,54 @@ interface PatientData {
 const AIChatbotPopup = ({ 
   isOpen, 
   onClose, 
-  patientData 
+  patientData,
 }: { 
   isOpen: boolean; 
   onClose: () => void; 
-  patientData: PatientData; 
+  patientData: PatientData;
 }) => {
   const [recommendations, setRecommendations] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [messages, setMessages] = useState<{ role: 'user' | 'assistant', content: string }[]>([]);
+  const [userInput, setUserInput] = useState('');
+  const [isThinking, setIsThinking] = useState(false);
+
+  const handleSendMessage = async () => {
+    if (!userInput.trim()) return;
+
+    const currentInput = userInput;
+    setUserInput('');
+
+    const newMessages: { role: 'user' | 'assistant', content: string }[] = [...messages, { role: 'user', content: currentInput }];
+    setMessages(newMessages);
+    const messageHistory = newMessages.map(msg => `${msg.role}: ${msg.content}`).join('\n');
+    
+    setIsThinking(true);
+
+    // This prompt can be refined to be more conversational
+    const prompt = `Based on the previous recommendations and the patient data, answer the following question: ${currentInput}\n\nHistory:\n${messageHistory}`;
+
+    try {
+      // Using the same API endpoint, you might want a different one for chat
+      const response = await fetch('/api/openai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessages(prev => [...prev, { role: 'assistant', content: data.recommendations }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I couldn't get a response." }]);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setMessages(prev => [...prev, { role: 'assistant', content: "An error occurred." }]);
+    } finally {
+      setIsThinking(false);
+    }
+  };
 
   const generateDemoRecommendations = (patientInfo: {
     treatmentPlan: string;
@@ -258,34 +298,63 @@ Please provide the audit in the specified table format with all required columns
               </div>
             </div>
           ) : (
-            <div className="prose max-w-none">
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-3 mb-3 rounded">
-                <p className="text-xs text-blue-700">
-                  <strong>Note:</strong> AI analysis based on patient data. Review with medical coding team.
-                </p>
+            <>
+              <div className="prose max-w-none">
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-3 mb-3 rounded">
+                  <p className="text-xs text-blue-700">
+                    <strong>Note:</strong> AI analysis based on patient data. Review with medical coding team.
+                  </p>
+                </div>
+                <div className="whitespace-pre-wrap text-xs leading-relaxed">
+                  {recommendations}
+                </div>
               </div>
-              <div className="whitespace-pre-wrap text-xs leading-relaxed">
-                {recommendations}
+              <div className="mt-4">
+                {messages.map((msg, index) => (
+                  <div key={index} className={`p-2 rounded-lg mb-2 text-xs ${msg.role === 'user' ? 'bg-gray-200 text-right' : 'bg-blue-100'}`}>
+                    {msg.content}
+                  </div>
+                ))}
               </div>
-            </div>
+            </>
           )}
         </div>
 
-        {/* Footer */}
-        <div className="border-t border-gray-200 p-3 flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="px-3 py-1.5 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
-          >
-            Close
-          </button>
-          <button
-            onClick={generateRecommendations}
-            disabled={isLoading}
-            className="px-3 py-1.5 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
-          >
-            {isLoading ? 'Generating...' : 'Regenerate'}
-          </button>
+        {/* Footer with Chat */}
+        <div className="border-t border-gray-200 p-3">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              placeholder="Ask a follow-up question..."
+              className="flex-1 px-3 py-1.5 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+              disabled={isLoading || isThinking}
+            />
+            <button
+              onClick={handleSendMessage}
+              disabled={isLoading || isThinking || !userInput.trim()}
+              className="px-3 py-1.5 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+            >
+              Send
+            </button>
+          </div>
+          <div className="flex justify-end gap-2 mt-2">
+            <button
+              onClick={onClose}
+              className="px-3 py-1.5 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
+            >
+              Close
+            </button>
+            <button
+              onClick={generateRecommendations}
+              disabled={isLoading || isThinking}
+              className="px-3 py-1.5 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+            >
+              {isLoading || isThinking ? 'Generating...' : 'Regenerate'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -682,7 +751,7 @@ export default function ClinicalDesktopUI() {
                   temperature: newTemp
                 });
               }}
-              placeholder="N/A"
+              placeholder="36"
               className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
             />°C
           </span>
@@ -699,7 +768,7 @@ export default function ClinicalDesktopUI() {
                   bloodPressure: newBP
                 });
               }}
-              placeholder="N/A"
+              placeholder="128"
               className="w-20 px-1 border border-gray-400 rounded bg-white text-sm"
             /> mmHg
           </span>
@@ -716,7 +785,7 @@ export default function ClinicalDesktopUI() {
                   heartRate: newHR
                 });
               }}
-              placeholder="N/A"
+              placeholder="74"
               className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
             /> bpm
           </span>
@@ -733,7 +802,7 @@ export default function ClinicalDesktopUI() {
                   weight: newWeight
                 });
               }}
-              placeholder="N/A"
+              placeholder="64"
               className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
             /> kg
           </span>
@@ -750,7 +819,7 @@ export default function ClinicalDesktopUI() {
                   height: newHeight
                 });
               }}
-              placeholder="N/A"
+              placeholder="167"
               className="w-16 px-1 border border-gray-400 rounded bg-white text-sm"
             /> cm
           </span>
