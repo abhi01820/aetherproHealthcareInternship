@@ -27,7 +27,7 @@ const Field: React.FC<FieldProps> = ({ label, name, value, onChange, disabled })
 );
 
 const PatientInfo: React.FC = () => {
-  const { patient, setPatient } = useEHR();
+  const { patient } = useEHR();
   const [localPatient, setLocalPatient] = useState(patient);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
